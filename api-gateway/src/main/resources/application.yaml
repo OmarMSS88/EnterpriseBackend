@@ -1,0 +1,20 @@
+server:
+  port: 8082
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
+    reactor.netty: TRACE
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: visit-service
+          uri: http://$(VISIT_SERVICE_BASEURL:localhost:8080)
+          predicates:
+            - Path=/visits
+          filters:
+            - SetPath=/api/visit
