@@ -6,6 +6,7 @@ import fact.it.visitservice.model.VisitorItem;
 import fact.it.visitservice.repository.VisitRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -21,6 +22,15 @@ public class VisitService {
     private final VisitRepository visitRepository;
     private final WebClient webClient;
 
+    @Value("${tableservice.baseurl}")
+    private String tableServiceBaseUrl;
+
+    @Value("${dishservice.baseurl}")
+    private String dishServiceBaseUrl;
+
+    @Value("${waiterservice.baseurl}")
+    private String waiterServiceBaseUrl;
+
     public boolean placeVisit(VisitRequest visitRequest){
         Visit visit = new Visit();
         visit.setVisitNumber(UUID.randomUUID().toString());
@@ -33,19 +43,19 @@ public class VisitService {
         visit.setVisitorItemList(visitorItems);
 
         TableResponse[] tableResponseArray = webClient.get()
-                .uri("http://localhost:27017/api/table")
+                .uri("http://" + tableServiceBaseUrl + "api/table")
                 .retrieve()
                 .bodyToMono(TableResponse[].class)
                 .block();
 
         DishResponse[] dishResponseArray = webClient.get()
-                .uri("http://localhost:27019/api/dish")
+                .uri("http://" + dishServiceBaseUrl + "api/dish")
                 .retrieve()
                 .bodyToMono(DishResponse[].class)
                 .block();
 
         WaiterResponse[] waiterResponseArray = webClient.get()
-                .uri("http://localhost:27018/api/waiter")
+                .uri("http://" + waiterServiceBaseUrl + "api/waiter")
                 .retrieve()
                 .bodyToMono(WaiterResponse[].class)
                 .block();
