@@ -44,7 +44,7 @@ services:
   dish-service:
     depends_on:
       - mongo-dish
-    image: OmarMSS88/dish-service
+    image: omarmss88/dish-service
     ports:
       - 27019:27019
     links:
