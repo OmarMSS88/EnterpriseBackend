@@ -6,9 +6,10 @@ services:
       - 27017:27017
     volumes:
       - mongodb_table_data:/data/db
-  mongo-dish: mongo:latest
-  ports:
-    - 27019:27017
+  mongo-dish:
+    mongo: latest
+    ports:
+      - 27019:27017
   volumes:
     - mongodb_dish_data:/data/db
   mongo-waiter:
