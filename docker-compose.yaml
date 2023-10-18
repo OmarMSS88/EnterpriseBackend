@@ -24,9 +24,9 @@ services:
       - 3306:3306
     volumes:
       - mysql_visit_data:/var/lib/mysql
-  mysql:
-    environment:
-      - MYSQL_ROOT_PASSWORD: abc123
+    mysql:
+      environment:
+        - MYSQL_ROOT_PASSWORD: abc123
   table-service:
     depends_on:
       - mongo-table
