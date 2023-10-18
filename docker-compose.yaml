@@ -34,8 +34,8 @@ services:
     links:
       - mongo-table
     environment:
-      MONGODB_PORT: 27017
-      MONGODB_HOST: mongo-table
+      - MONGODB_PORT: 27017
+      - MONGODB_HOST: mongo-table
   dish-service:
     depends_on:
       - mongo-dish
