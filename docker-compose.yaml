@@ -32,7 +32,7 @@ services:
   table-service:
     depends_on:
       - mongo-table
-    image: OmarMSS88/EnterpriseBackend/table-service
+    image: omarmss88/enterprisebackend/table-service
     ports:
       - 8080:8080
     links:
@@ -44,7 +44,7 @@ services:
   dish-service:
     depends_on:
       - mongo-dish
-    image: OmarMSS88/EnterpriseBackend/dish-service
+    image: omarmss88/enterprisebackend/dish-service
     ports:
       - 27019:27019
     links:
@@ -56,7 +56,7 @@ services:
   waiter-service:
     depends_on:
       - mongo-waiter
-    image: OmarMSS88/EnterpriseBackend/waiter-service
+    image: omarmss88/enterprisebackend/waiter-service
     ports:
       - 27018:27018
     links:
@@ -68,7 +68,7 @@ services:
   visit-service:
     depends_on:
       - mysql-visit
-    image: OmarMSS88/EnterpriseBackend/visit-service
+    image: omarmss88/enterprisebackend/visit-service
     ports:
       - 8081:8081
     links:
@@ -90,7 +90,7 @@ services:
       - dish-service
       - waiter-service
       - visit-service
-    image: OmarMSS88/EnterpriseBackend/api-gateway
+    image: omarmss88/enterprisebackend/api-gateway
     ports:
       - 8084:8084
     environment:
