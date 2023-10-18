@@ -1,31 +1,34 @@
 ---
 services:
   mongo-table:
-    mongo: latest
+    image: mongo:latest
     ports:
       - 27017:27017
     volumes:
       - mongodb_table_data:/data/db
-  mongo-dish:
-    mongo: latest
+  mongo-dish: 
+    image: mongo:latest
     ports:
       - 27019:27017
     volumes:
       - mongodb_dish_data:/data/db
+      
   mongo-waiter:
-    mongo: latest
+    image: mongo:latest
     ports:
       - 27018:27017
     volumes:
       - mongodb_waiter_data:/data/db
+      
   mysql-visit:
-    mysql: latest
+    image: mysql:latest
     ports:
       - 3306:3306
     volumes:
       - mysql_visit_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: abc123
+      
   table-service:
     depends_on:
       - mongo-table
@@ -36,6 +39,7 @@ services:
     environment:
       MONGODB_PORT: 27017
       MONGODB_HOST: mongo-table
+      
   dish-service:
     depends_on:
       - mongo-dish
@@ -46,6 +50,7 @@ services:
     environment:
       MONGODB_PORT: 27019
       MONGODB_HOST: mongo-dish
+      
   waiter-service:
     depends_on:
       - mongo-waiter
@@ -56,6 +61,7 @@ services:
     environment:
       MONGODB_PORT: 27018
       MONGODB_HOST: mongo-waiter
+      
   visit-service:
     depends_on:
       - mysql-visit
