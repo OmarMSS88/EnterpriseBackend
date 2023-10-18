@@ -1,7 +1,7 @@
 services:
   mongo-table:
      mongo:latest
-    ports:
+    ports: 
       - 27017:27017
     volumes:
       - mongodb_table_data:/data/db
