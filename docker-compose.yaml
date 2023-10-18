@@ -87,8 +87,8 @@ services:
           DISH_SERVICE_BASEURL: dish-service:8082
           WAITER_SERVICE_BASEURL: waiter-service:8083
           VISIT_SERVICE_BASEURL: visit-service:8081
-    volumes:
-      mongodb_table_data:
-      mongodb_dish_data:
-      mongodb_waiter_data:
-      mysql_visit_data:
+  volumes:
+    - mongodb_table_data:
+    - mongodb_dish_data:
+    - mongodb_waiter_data:
+    - mysql_visit_data:
