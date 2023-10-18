@@ -10,8 +10,8 @@ services:
     mongo: latest
     ports:
       - 27019:27017
-  volumes:
-    - mongodb_dish_data:/data/db
+    volumes:
+      - mongodb_dish_data:/data/db
   mongo-waiter:
     mongo: latest
     ports:
@@ -86,8 +86,8 @@ services:
           DISH_SERVICE_BASEURL: dish-service:8082
           WAITER_SERVICE_BASEURL: waiter-service:8083
           VISIT_SERVICE_BASEURL: visit-service:8081
-    volumes:
-      mongodb_table_data: null
-      mongodb_dish_data: null
-      mongodb_waiter_data: null
-      mysql_visit_data: null
+  volumes:
+    mongodb_table_data: null
+    mongodb_dish_data: null
+    mongodb_waiter_data: null
+    mysql_visit_data: null
