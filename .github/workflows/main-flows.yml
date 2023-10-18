@@ -1,0 +1,135 @@
+name: Build and deliver containers
+
+on: push
+
+jobs:
+  tableservice:
+    runs-on: ubuntu-latest
+    name: Java 17 build, test, deliver table-service container
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          cache: maven
+          distribution: adopt
+      
+      - name: Build, test and package project
+        working-directory: ./table-service
+        run: mvn package -DskipTests
+
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker Build
+        run: docker build -t ${{ secrets.DOCKER_USER }}/table-service:latest ./table-service
+
+      - name: Upload container to Docker Hub with Push
+        run: docker push ${{ secrets.DOCKER_USER }}/table-service:latest
+  dishservice:
+    runs-on: ubuntu-latest
+    name: Java 17 build, test, deliver dish-service container
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          cache: maven
+          distribution: adopt
+
+      - name: Build, test and package project
+        working-directory: ./dish-service
+        run: mvn package -DskipTests
+
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker Build
+        run: docker build -t ${{ secrets.DOCKER_USER }}/dish-service:latest ./dish-service
+
+      - name: Upload container to Docker Hub with Push
+        run: docker push ${{ secrets.DOCKER_USER }}/dish-service:latest
+  waiterservice:
+    runs-on: ubuntu-latest
+    name: Java 17 build, test, deliver waiter-service container
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          cache: maven
+          distribution: adopt
+        
+      - name: Build, test and package project
+        working-directory: ./waiter-service
+        run: mvn package -DskipTests
+        
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker Build
+        run: docker build -t ${{ secrets.DOCKER_USER }}/waiter-service:latest ./waiter-service
+
+      - name: Upload container to Docker Hub with Push
+        run: docker push ${{ secrets.DOCKER_USER }}/waiter-service:latest
+  visitservice:
+    runs-on: ubuntu-latest
+    name: Java 17 build, test, deliver visit-service container
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          cache: maven
+          distribution: adopt
+        
+      - name: Build, test and package project
+        working-directory: ./visit-service
+        run: mvn package -DskipTests
+        
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker Build
+        run: docker build -t ${{ secrets.DOCKER_USER }}/visit-service:latest ./visit-service
+
+      - name: Upload container to Docker Hub with Push
+        run: docker push ${{ secrets.DOCKER_USER }}/visit-service:latest
+  apigateway:
+    runs-on: ubuntu-latest
+    name: Java 17 build, test, deliver ede-api-gateway container
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          cache: maven
+          distribution: adopt
+
+      - name: Build, test and package project
+        working-directory: ./api-gateway
+        run: mvn package -DskipTests
+
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Docker Build
+        run: docker build --build-arg GOOGLE_CLIENTID=${{ secrets.GOOGLE_CLIENTID }} --build-arg GOOGLE_CLIENTSECRET=${{ secrets.GOOGLE_CLIENTSECRET }} -t ${{ secrets.DOCKER_USER }}/ede-api-gateway:latest ./api-gateway
+
+      - name: Upload container to Docker Hub with Push
+        run: docker push ${{ secrets.DOCKER_USER }}/ede-api-gateway:latest
