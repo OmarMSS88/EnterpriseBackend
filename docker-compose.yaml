@@ -90,6 +90,7 @@ services:
       - dish-service
       - waiter-service
       - visit-service
+    image: OmarMSS88/EnterpriseBackend/api-gateway
     ports:
       - 8084:8084
     environment:
