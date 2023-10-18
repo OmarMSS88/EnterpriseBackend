@@ -32,6 +32,7 @@ services:
   table-service:
     depends_on:
       - mongo-table
+    image: OmarMSS88/EnterpriseBackend/table-service
     ports:
       - 8080:8080
     links:
@@ -54,6 +55,7 @@ services:
   waiter-service:
     depends_on:
       - mongo-waiter
+    image: OmarMSS88/EnterpriseBackend/waiter-service
     ports:
       - 27018:27018
     links:
@@ -65,6 +67,7 @@ services:
   visit-service:
     depends_on:
       - mysql-visit
+    image: OmarMSS88/EnterpriseBackend/visit-service
     ports:
       - 8081:8081
     links:
