@@ -32,7 +32,7 @@ services:
   table-service:
     depends_on:
       - mongo-table
-    image: omarmss88/table-service
+    image: jetzel/table-service
     ports:
       - 8080:8080
     links:
@@ -44,7 +44,7 @@ services:
   dish-service:
     depends_on:
       - mongo-dish
-    image: omarmss88/dish-service
+    image: jetzel/dish-service
     ports:
       - 27019:27019
     links:
@@ -56,7 +56,7 @@ services:
   waiter-service:
     depends_on:
       - mongo-waiter
-    image: omarmss88/waiter-service
+    image: jetzel/waiter-service
     ports:
       - 27018:27018
     links:
@@ -68,7 +68,7 @@ services:
   visit-service:
     depends_on:
       - mysql-visit
-    image: omarmss88/visit-service
+    image: jetzel/visit-service
     ports:
       - 8081:8081
     links:
@@ -90,7 +90,7 @@ services:
       - dish-service
       - waiter-service
       - visit-service
-    image: omarmss88/api-gateway
+    image: jetzel/api-gateway
     ports:
       - 8084:8084
     environment:
