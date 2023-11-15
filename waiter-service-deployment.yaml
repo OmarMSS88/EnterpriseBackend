@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\eigenaar\Documents\kompose.exe convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: waiter-service
+  name: waiter-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: waiter-service
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\eigenaar\Documents\kompose.exe convert
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: waiter-service
+    spec:
+      containers:
+        - env:
+            - name: MONGODB_HOST
+              value: mongo-waiter
+            - name: MONGODB_PORT
+              value: "27018"
+          image: jetzel/waiter-service
+          name: waiter-service
+          ports:
+            - containerPort: 27018
+          resources: {}
+      restartPolicy: Always
+status: {}
