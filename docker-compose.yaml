@@ -19,7 +19,6 @@ services:
       - 27018:27017
     volumes:
       - mongodb_waiter_data:/data/db
-      - mongodb_waiter_data_config:/data/configdb
       
   mysql-visit:
     image: mysql:latest
