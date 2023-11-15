@@ -1,7 +1,7 @@
 # EnterpriseBackend
 ## Introduction
 <p>
-    Voor dit project hebben we een geavanceerde microservices-backend ontwikkeld. Onze backend bestaat uit vier afzonderlijke microservices die gezamenlijk de essentiële structuur van een restaurant vormen: bezoeken, oberbeheer, tafels en gerechten. Elk van deze services heeft zijn eigen specifieke database. Alle mogelijke verzoeken worden efficiënt afgehandeld door een op maat gemaakte gateway.
+    For this project, we've crafted a sophisticated microservices backend. Our backend comprises four distinct microservices that collectively shape the fundamental structure of a restaurant: visits, waiters, tables, and dishes. Each of these services has its own dedicated database. All conceivable requests are seamlessly handled by a custom-built gateway.
 </p>
 
 ## Java structure
