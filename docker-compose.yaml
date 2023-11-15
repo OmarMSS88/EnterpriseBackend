@@ -6,6 +6,7 @@ services:
       - 27017:27017
     volumes:
       - mongodb_table_data:/data/db
+      - mongo-table_data_config:/data/configdb
   mongo-dish: 
     image: mongo:latest
     ports:
