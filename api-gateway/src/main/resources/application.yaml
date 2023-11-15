@@ -18,6 +18,11 @@ spring:
             - Path=/visits
           filters:
             - SetPath=/api/visit
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 500
+                redis-rate-limiter.burstCapacity: 1000
+                redis-rate-limiter.requestedTokens: 1
 
   security:
     oauth2:
