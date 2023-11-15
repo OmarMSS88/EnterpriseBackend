@@ -7,5 +7,5 @@
 ## Java structure
 
 <p>
-    ttt
+    <img src="readmeassets/UML.png"/>
 </p>
