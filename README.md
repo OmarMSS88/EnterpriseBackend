@@ -5,7 +5,18 @@
 </p>
 
 ## Java structure
-
+### UML
+<p>
+    Our stucture is based on this UML model, although it is not 100% faithful to the model, it shares the same idea.
+</p>
 <p>
     <img src="readmeassets/UML.png"/>
+</p>
+
+### folder sturctures
+<p>
+    <img src="readmeassets/tablefolders.png"/>
+    <img src="readmeassets/dishfolders.png"/>
+    <img src="readmeassets/visittfolders.png"/>
+    <img src="readmeassets/waiterfolders.png"/>
 </p>
