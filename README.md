@@ -9,7 +9,7 @@
     For this project, we've crafted a sophisticated microservices backend. Our backend comprises four distinct microservices that collectively shape the fundamental structure of a restaurant: visits, waiters, tables, and dishes. Each of these services has its own dedicated database. All conceivable requests are seamlessly handled by a custom-built gateway.
 </p>
 
-## Java structure <a class="anchor" id="java_structure"></a>
+## Java structure <a class="anchor" id="java-structure"></a>
 ### UML <a class="anchor" id="UML"></a>
 <p>
     Our stucture is based on this UML model, although it is not 100% faithful to the model, it shares the same idea.
@@ -18,7 +18,7 @@
     <img src="readmeassets/UML.png"/>
 </p>
 
-### folder structures <a class="anchor" id="folder-structures"></a>
+### Folder structures <a class="anchor" id="folder-structures"></a>
 <p>
     <img src="readmeassets/tablefolders.png"/>
 </p>
