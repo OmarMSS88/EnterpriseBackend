@@ -1,9 +1,9 @@
 # EnterpriseBackend
 # Table of Contents
 * [Introduction](#introduction)
-* [Java_Structure](#java-structure)
+* [Java Structure](#java-structure)
     * [UML](#UML)
-    * [Folder_Structures](#folder-sturctures)
+    * [Folder Structures](#folder-structures)
 ## Introduction <a class="anchor" id="introduction"></a>
 <p>
     For this project, we've crafted a sophisticated microservices backend. Our backend comprises four distinct microservices that collectively shape the fundamental structure of a restaurant: visits, waiters, tables, and dishes. Each of these services has its own dedicated database. All conceivable requests are seamlessly handled by a custom-built gateway.
@@ -18,7 +18,7 @@
     <img src="readmeassets/UML.png"/>
 </p>
 
-### folder sturctures <a class="anchor" id="folder-structures"></a>
+### folder structures <a class="anchor" id="folder-structures"></a>
 <p>
     <img src="readmeassets/tablefolders.png"/>
 </p>
