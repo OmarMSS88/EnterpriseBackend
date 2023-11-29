@@ -41,3 +41,13 @@
     <li><strong>repository:</strong> Manages the interaction with the database, including querying, saving, and updating data. This folder often contains classes or interfaces that define the data access methods.</li>
     <li><strong>service:</strong> Implements the business logic of the service. It contains the application's main functionality, handling tasks such as data validation, processing, and interaction with the repository to perform CRUD (Create, Read, Update, Delete) operations.</li>
 </ul>
+
+## CI/CD & Depolyment
+<p>
+    The next step is to create automation using docker and docker-compose files.
+</p>
+
+### Dockerfile
+<p>
+    Each service has a dockerfile that is used to create Docker images of said services within our Java application.
+</p>

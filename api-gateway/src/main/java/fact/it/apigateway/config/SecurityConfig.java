@@ -21,6 +21,18 @@ public class SecurityConfig {
                                 .anyExchange()
                                 .authenticated()
                 )
+                .authorizeExchange(exchange ->
+                        exchange.pathMatchers(HttpMethod.GET, "/visits")
+                                .permitAll()
+                                .anyExchange()
+                                .authenticated()
+                )
+                .authorizeExchange(exchange ->
+                        exchange.pathMatchers(HttpMethod.GET, "/waiters")
+                                .permitAll()
+                                .anyExchange()
+                                .authenticated()
+                )
                 .oauth2ResourceServer((oauth2 -> oauth2
                         .jwt(Customizer.withDefaults())
                 ));

@@ -26,7 +26,17 @@ public class DishController {
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public List<DishResponse> getAllDishess(){
+    public List<DishResponse> getAllDishes(){
         return dishService.getAllDishes();
+    }
+
+    @PutMapping("/dishes/{id}")
+    public void updateDish(@RequestBody DishRequest dishRequest, @PathVariable String id) {
+        dishService.updateDish(dishRequest, id);
+    }
+
+    @DeleteMapping("/dishes/{id}")
+    public void deleteDish(@PathVariable String id) {
+        dishService.deleteDish(id);
     }
 }
