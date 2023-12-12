@@ -1,7 +1,7 @@
 icon: https://apps.okteto.com/movies/icon.png
 build:
   api:
-    context: .
+    context: ./dish-service
 deploy:
   - helm upgrade --install app chart --set image=${OKTETO_BUILD_API_IMAGE}
 dev:
