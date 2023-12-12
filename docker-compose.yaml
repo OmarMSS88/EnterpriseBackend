@@ -31,12 +31,12 @@ spec:
             - name: mongo
               containerPort: 27017
           volumeMounts:
-            - name: mongodb_table_data
+            - name: mongodb-table-data
               mountPath: /data/db
       volumes:
-        - name: mongodb_table_data
+        - name: mongodb-table-data
           persistentVolumeClaim:
-            claimName: mongodb_table_data
+            claimName: mongodb-table-data
 ---
 apiVersion: v1
 kind: Service
@@ -71,12 +71,12 @@ spec:
             - name: mongo
               containerPort: 27017
           volumeMounts:
-            - name: mongodb_dish_data
+            - name: mongodb-dish-data
               mountPath: /data/db
       volumes:
-        - name: mongodb_dish_data
+        - name: mongodb-dish-data
           persistentVolumeClaim:
-            claimName: mongodb_dish_data
+            claimName: mongodb-dish-data
 ---
 apiVersion: v1
 kind: Service
@@ -111,12 +111,12 @@ spec:
             - name: mongo
               containerPort: 27017
           volumeMounts:
-            - name: mongodb_waiter_data
+            - name: mongodb-waiter-data
               mountPath: /data/db
       volumes:
-        - name: mongodb_waiter_data
+        - name: mongodb-waiter-data
           persistentVolumeClaim:
-            claimName: mongodb_waiter_data
+            claimName: mongodb-waiter-data
 ---
 apiVersion: v1
 kind: Service
@@ -151,15 +151,15 @@ spec:
             - name: mysql
               containerPort: 3306
           volumeMounts:
-            - name: mysql_visit_data
+            - name: mysql-visit-data
               mountPath: /var/lib/mysql
           env:
-            - name: MYSQL_ROOT_PASSWORD
+            - name: MYSQl-ROOT_PASSWORD
               value: root
       volumes:
-        - name: mysql_visit_data
+        - name: mysql-visit-data
           persistentVolumeClaim:
-            claimName: mysql_visit_data
+            claimName: mysql-visit-data
 ---
 apiVersion: v1
 kind: Service
@@ -318,15 +318,15 @@ spec:
               value: "dish-service:8082"
             - name: WAITER_SERVICE_BASEURL
               value: "waiter-service:8083"
-            - name: MYSQL_ROOT_PASSWORD
+            - name: MYSQl-ROOT_PASSWORD
               value: "root"
-            - name: MYSQL_DB_USERNAME
+            - name: MYSQl-DB_USERNAME
               value: "root"
-            - name: MYSQL_DB_PASSWORD
+            - name: MYSQl-DB_PASSWORD
               value: "abc123"
-            - name: MYSQL_DB_HOST
+            - name: MYSQl-DB_HOST
               value: "mysql-visit"
-            - name: MYSQL_DB_PORT
+            - name: MYSQl-DB_PORT
               value: "3306"
 
 ---
