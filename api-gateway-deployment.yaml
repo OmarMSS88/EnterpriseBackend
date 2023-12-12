@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   annotations:
     kompose.cmd: C:\Users\eigenaar\Documents\kompose.exe convert
+    kompose.service.type: LoadBalancer
     kompose.version: 1.26.0 (40646f47)
   creationTimestamp: null
   labels:
@@ -18,6 +19,7 @@ spec:
     metadata:
       annotations:
         kompose.cmd: C:\Users\eigenaar\Documents\kompose.exe convert
+        kompose.service.type: LoadBalancer
         kompose.version: 1.26.0 (40646f47)
       creationTimestamp: null
       labels:

@@ -3,17 +3,19 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: C:\Users\eigenaar\Documents\kompose.exe convert
+    kompose.service.type: LoadBalancer
     kompose.version: 1.26.0 (40646f47)
   creationTimestamp: null
   labels:
-    io.kompose.service: mongo-table
-  name: mongo-table
+    io.kompose.service: dish-service-tcp
+  name: dish-service-tcp
 spec:
   ports:
-    - name: "27017"
-      port: 27017
-      targetPort: 27017
+    - name: "27019"
+      port: 27019
+      targetPort: 27019
   selector:
-    io.kompose.service: mongo-table
+    io.kompose.service: dish-service
+  type: LoadBalancer
 status:
   loadBalancer: {}

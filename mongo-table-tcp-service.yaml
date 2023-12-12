@@ -3,17 +3,19 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: C:\Users\eigenaar\Documents\kompose.exe convert
+    kompose.service.type: LoadBalancer
     kompose.version: 1.26.0 (40646f47)
   creationTimestamp: null
   labels:
-    io.kompose.service: table-service
-  name: table-service
+    io.kompose.service: mongo-table-tcp
+  name: mongo-table-tcp
 spec:
   ports:
-    - name: "8080"
-      port: 8080
-      targetPort: 8080
+    - name: "27017"
+      port: 27017
+      targetPort: 27017
   selector:
-    io.kompose.service: table-service
+    io.kompose.service: mongo-table
+  type: LoadBalancer
 status:
   loadBalancer: {}

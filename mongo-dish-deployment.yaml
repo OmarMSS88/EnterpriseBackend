@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   annotations:
     kompose.cmd: C:\Users\eigenaar\Documents\kompose.exe convert
+    kompose.service.type: LoadBalancer
     kompose.version: 1.26.0 (40646f47)
   creationTimestamp: null
   labels:
@@ -19,6 +20,7 @@ spec:
     metadata:
       annotations:
         kompose.cmd: C:\Users\eigenaar\Documents\kompose.exe convert
+        kompose.service.type: LoadBalancer
         kompose.version: 1.26.0 (40646f47)
       creationTimestamp: null
       labels:
@@ -33,14 +35,9 @@ spec:
           volumeMounts:
             - mountPath: /data/db
               name: mongodb-dish-data
-            - mountPath: /data/configdb
-              name: mongodb-dish-data-config
       restartPolicy: Always
       volumes:
         - name: mongodb-dish-data
           persistentVolumeClaim:
             claimName: mongodb-dish-data
-        - name: mongodb-dish-data-config
-          persistentVolumeClaim:
-            claimName: mongodb-dish-data-config
 status: {}

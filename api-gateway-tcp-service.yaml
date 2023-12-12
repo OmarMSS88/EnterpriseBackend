@@ -3,17 +3,19 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: C:\Users\eigenaar\Documents\kompose.exe convert
+    kompose.service.type: LoadBalancer
     kompose.version: 1.26.0 (40646f47)
   creationTimestamp: null
   labels:
-    io.kompose.service: waiter-service
-  name: waiter-service
+    io.kompose.service: api-gateway-tcp
+  name: api-gateway-tcp
 spec:
   ports:
-    - name: "27018"
-      port: 27018
-      targetPort: 27018
+    - name: "8084"
+      port: 8084
+      targetPort: 8084
   selector:
-    io.kompose.service: waiter-service
+    io.kompose.service: api-gateway
+  type: LoadBalancer
 status:
   loadBalancer: {}
