@@ -1,0 +1,107 @@
+version: '3'
+services:
+  mongo-table:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_table_data:/data/db
+  mongo-dish: 
+    image: mongo:latest
+    ports:
+      - 27019:27017
+    volumes:
+      - mongodb_dish_data:/data/db
+      
+  mongo-waiter:
+    image: mongo:latest
+    ports:
+      - 27018:27017
+    volumes:
+      - mongodb_waiter_data:/data/db
+      
+  mysql-visit:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_visit_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123
+      
+  table-service:
+    depends_on:
+      - mongo-table
+    image: jetzel/table-service
+    ports:
+      - 8080:8080
+    links:
+      - mongo-table
+    environment:
+      MONGODB_PORT: 27017
+      MONGODB_HOST: mongo-table
+      
+  dish-service:
+    depends_on:
+      - mongo-dish
+    image: jetzel/dish-service
+    ports:
+      - 27019:27019
+    links:
+      - mongo-dish
+    environment:
+      MONGODB_PORT: 27019
+      MONGODB_HOST: mongo-dish
+      
+  waiter-service:
+    depends_on:
+      - mongo-waiter
+    image: jetzel/waiter-service
+    ports:
+      - 27018:27018
+    links:
+      - mongo-waiter
+    environment:
+      MONGODB_PORT: 27018
+      MONGODB_HOST: mongo-waiter
+      
+  visit-service:
+    depends_on:
+      - mysql-visit
+    image: jetzel/visit-service
+    ports:
+      - 8081:8081
+    links:
+      - table-service
+      - dish-service
+      - waiter-service
+    environment:
+      TABLE_SERVICE_BASEURL: table-service:8080
+      DISH_SERVICE_BASEURL: dish-service:8082
+      WAITER_SERVICE_BASEURL: waiter-service:8083
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: abc123
+      MYSQL_DB_HOST: mysql-visit
+      MYSQL_DB_PORT: 3306
+
+  api-gateway:
+    depends_on:
+      - table-service
+      - dish-service
+      - waiter-service
+      - visit-service
+    image: jetzel/api-gateway
+    ports:
+      - 8084:8084
+    environment:
+      TABLE_SERVICE_BASEURL: table-service:8080
+      DISH_SERVICE_BASEURL: dish-service:8082
+      WAITER_SERVICE_BASEURL: waiter-service:8083
+      VISIT_SERVICE_BASEURL: visit-service:8081
+volumes:
+  mongodb_table_data:
+  mongodb_dish_data:
+  mongodb_waiter_data:
+  mysql_visit_data:
+
