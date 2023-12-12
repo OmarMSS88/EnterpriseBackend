@@ -1,4 +1,93 @@
-apiVersion: v1
+version: '3'
+services:
+  mongo-table:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_table_data:/data/db
+    labels:
+      kompose.service.type: LoadBalancer
+
+      
+  mongo-dish: 
+    image: mongo:latest
+    ports:
+      - 27019:27017
+    volumes:
+      - mongodb_dish_data:/data/db
+    labels:
+      kompose.service.type: LoadBalancer
+
+      
+  mongo-waiter:
+    image: mongo:latest
+    ports:
+      - 27018:27017
+    volumes:
+      - mongodb_waiter_data:/data/db
+    labels:
+      kompose.service.type: LoadBalancer
+
+      
+  mysql-visit:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_visit_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123
+    labels:
+      kompose.service.type: LoadBalancer
+
+      
+  table-service:
+    depends_on:
+      - mongo-table
+    image: jetzel/table-service
+    ports:
+      - 8080:8080
+    links:
+      - mongo-table
+    environment:
+      MONGODB_PORT: 27017
+      MONGODB_HOST: mongo-table
+    labels:
+      kompose.service.type: LoadBalancer
+
+      
+  dish-service:
+    depends_on:
+      - mongo-dish
+    image: jetzel/dish-service
+    ports:
+      - 27019:27019
+    links:
+      - mongo-dish
+    environment:
+      MONGODB_PORT: 27019
+      MONGODB_HOST: mongo-dish
+    labels:
+      kompose.service.type: LoadBalancer
+
+      
+  waiter-service:
+    depends_on:
+      - mongo-waiter
+    image: jetzel/waiter-service
+    ports:
+      - 27018:27018
+    links:
+      - mongo-waiter
+    environment:
+      MONGODB_PORT: 27018
+      MONGODB_HOST: mongo-waiter
+    labels:
+      kompose.service.type: LoadBalancer
+
+      
+  apiVersion: v1
 kind: Service
 metadata:
   name: mongo-table
@@ -6,36 +95,161 @@ spec:
   selector:
     app: mongo-table
   ports:
-    - protocol: TCP
+    - name: mongo
       port: 27017
       targetPort: 27017
-  type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongo-table
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: mongo-table
+  replicas: 1
   template:
     metadata:
       labels:
         app: mongo-table
     spec:
       containers:
-        - name: mongo-table
+        - name: mongo
           image: mongo:latest
           ports:
-            - containerPort: 27017
+            - name: mongo
+              containerPort: 27017
           volumeMounts:
-            - name: mongodb-table-data
+            - name: mongodb_table_data
               mountPath: /data/db
+      volumes:
+        - name: mongodb_table_data
+          persistentVolumeClaim:
+            claimName: mongodb_table_data
 ---
-# Repeat the above pattern for mongo-dish, mongo-waiter, and mysql-visit services.
-
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-dish
+spec:
+  selector:
+    app: mongo-dish
+  ports:
+    - name: mongo
+      port: 27019
+      targetPort: 27017
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-dish
+spec:
+  selector:
+    matchLabels:
+      app: mongo-dish
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mongo-dish
+    spec:
+      containers:
+        - name: mongo
+          image: mongo:latest
+          ports:
+            - name: mongo
+              containerPort: 27017
+          volumeMounts:
+            - name: mongodb_dish_data
+              mountPath: /data/db
+      volumes:
+        - name: mongodb_dish_data
+          persistentVolumeClaim:
+            claimName: mongodb_dish_data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-waiter
+spec:
+  selector:
+    app: mongo-waiter
+  ports:
+    - name: mongo
+      port: 27018
+      targetPort: 27017
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-waiter
+spec:
+  selector:
+    matchLabels:
+      app: mongo-waiter
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mongo-waiter
+    spec:
+      containers:
+        - name: mongo
+          image: mongo:latest
+          ports:
+            - name: mongo
+              containerPort: 27017
+          volumeMounts:
+            - name: mongodb_waiter_data
+              mountPath: /data/db
+      volumes:
+        - name: mongodb_waiter_data
+          persistentVolumeClaim:
+            claimName: mongodb_waiter_data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-visit
+spec:
+  selector:
+    app: mysql-visit
+  ports:
+    - name: mysql
+      port: 3306
+      targetPort: 3306
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-visit
+spec:
+  selector:
+    matchLabels:
+      app: mysql-visit
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql-visit
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:latest
+          ports:
+            - name: mysql
+              containerPort: 3306
+          volumeMounts:
+            - name: mysql_visit_data
+              mountPath: /var/lib/mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+      volumes:
+        - name: mysql_visit_data
+          persistentVolumeClaim:
+            claimName: mysql_visit_data
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -44,20 +258,19 @@ spec:
   selector:
     app: table-service
   ports:
-    - protocol: TCP
+    - name: http
       port: 8080
       targetPort: 8080
-  type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: table-service
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: table-service
+  replicas: 1
   template:
     metadata:
       labels:
@@ -67,11 +280,184 @@ spec:
         - name: table-service
           image: jetzel/table-service
           ports:
-            - containerPort: 8080
+            - name: http
+              containerPort: 8080
           env:
             - name: MONGODB_PORT
               value: "27017"
             - name: MONGODB_HOST
               value: mongo-table
 ---
-# Repeat the above pattern for dish-service, waiter-service, visit-service, and api-gateway services.
+apiVersion: v1
+kind: Service
+metadata:
+  name: dish-service
+spec:
+  selector:
+    app: dish-service
+  ports:
+    - name: http
+      port: 8082
+      targetPort: 8082
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dish-service
+spec:
+  selector:
+    matchLabels:
+      app: dish-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dish-service
+    spec:
+      containers:
+        - name: dish-service
+          image: jetzel/dish-service
+          ports:
+            - name: http
+              containerPort: 8082
+          env:
+            - name: MONGODB_PORT
+              value: "27019"
+            - name: MONGODB_HOST
+              value: mongo-dish
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: waiter-service
+spec:
+  selector:
+    app: waiter-service
+  ports:
+    - name: http
+      port: 8083
+      targetPort: 8083
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: waiter-service
+spec:
+  selector:
+    matchLabels:
+      app: waiter-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: waiter-service
+    spec:
+      containers:
+        - name: waiter-service
+          image: jetzel/waiter-service
+          ports:
+            - name: http
+              containerPort: 8083
+          env:
+            - name: MONGODB_PORT
+              value: "27018"
+            - name: MONGODB_HOST
+              value: mongo-waiter
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: visit-service
+spec:
+  selector:
+    app: visit-service
+  ports:
+    - name: http
+      port: 8081
+      targetPort: 8081
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: visit-service
+spec:
+  selector:
+    matchLabels:
+      app: visit-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: visit-service
+    spec:
+      containers:
+        - name: visit-service
+          image: jetzel/visit-service
+          ports:
+            - name: http
+              containerPort: 8081
+          env:
+            - name: TABLE_SERVICE_BASEURL
+              value: "table-service:8080"
+            - name: DISH_SERVICE_BASEURL
+              value: "dish-service:8082"
+            - name: WAITER_SERVICE_BASEURL
+              value: "waiter-service:8083"
+            - name: MYSQL_ROOT_PASSWORD
+              value: "root"
+            - name: MYSQL_DB_USERNAME
+              value: "root"
+            - name: MYSQL_DB_PASSWORD
+              value: "abc123"
+            - name: MYSQL_DB_HOST
+              value: "mysql-visit"
+            - name: MYSQL_DB_PORT
+              value: "3306"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway
+spec:
+  selector:
+    app: api-gateway
+  ports:
+    - name: http
+      port: 8084
+      targetPort: 8084
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+spec:
+  selector:
+    matchLabels:
+      app: api-gateway
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+        - name: api-gateway
+          image: jetzel/api-gateway
+          ports:
+            - name: http
+              containerPort: 8084
+          env:
+            - name: TABLE_SERVICE_BASEURL
+              value: "table-service:8080"
+            - name: DISH_SERVICE_BASEURL
+              value: "dish-service:8082"
+            - name: WAITER_SERVICE_BASEURL
+              value: "waiter-service:8083"
+            - name: VISIT_SERVICE_BASEURL
+              value: "visit-service:8081"
