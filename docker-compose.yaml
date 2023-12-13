@@ -1,4 +1,4 @@
-name: your-app-name
+version: "2"
 services:
   mongo-table:
     image: mongo:latest
@@ -6,8 +6,6 @@ services:
       - 27017:27017
     volumes:
       - mongodb_table_data:/data/db
-    environment:
-      SERVICE_TYPE: LoadBalancer
 
   mongo-dish:
     image: mongo:latest
@@ -15,8 +13,6 @@ services:
       - 27019:27017
     volumes:
       - mongodb_dish_data:/data/db
-    environment:
-      SERVICE_TYPE: LoadBalancer
 
   mongo-waiter:
     image: mongo:latest
@@ -24,8 +20,6 @@ services:
       - 27018:27017
     volumes:
       - mongodb_waiter_data:/data/db
-    environment:
-      SERVICE_TYPE: LoadBalancer
 
   mysql-visit:
     image: mysql:latest
@@ -35,43 +29,37 @@ services:
       - mysql_visit_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: abc123
-      SERVICE_TYPE: LoadBalancer
+      
 
   table-service:
     depends_on:
       - mongo-table
     image: jetzel/table-service
     ports:
-      - 8080:8080
+      - 27020:27017
     environment:
       MONGODB_PORT: 27017
       MONGODB_HOST: mongo-table
-    labels:
-      SERVICE_TYPE: LoadBalancer
 
   dish-service:
     depends_on:
       - mongo-dish
     image: jetzel/dish-service
     ports:
-      - 27019:27019
+      - 27022:27017
     environment:
       MONGODB_PORT: 27019
       MONGODB_HOST: mongo-dish
-    labels:
-      SERVICE_TYPE: LoadBalancer
 
   waiter-service:
     depends_on:
       - mongo-waiter
     image: jetzel/waiter-service
     ports:
-      - 27018:27018
+      - 27021:27017
     environment:
       MONGODB_PORT: 27018
       MONGODB_HOST: mongo-waiter
-    labels:
-      SERVICE_TYPE: LoadBalancer
 
   visit-service:
     depends_on:
@@ -87,9 +75,7 @@ services:
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: abc123
       MYSQL_DB_HOST: mysql-visit
-      MYSQL_DB_PORT: 3306
-    labels:
-      SERVICE_TYPE: LoadBalancer
+      MYSQL_DB_PORT: 3306  
 
   api-gateway:
     depends_on:
@@ -105,8 +91,6 @@ services:
       DISH_SERVICE_BASEURL: dish-service:8082
       WAITER_SERVICE_BASEURL: waiter-service:8083
       VISIT_SERVICE_BASEURL: visit-service:8081
-    labels:
-      SERVICE_TYPE: LoadBalancer
 
 volumes:
   mongodb_table_data:

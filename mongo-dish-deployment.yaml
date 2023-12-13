@@ -33,14 +33,9 @@ spec:
           volumeMounts:
             - mountPath: /data/db
               name: mongodb-dish-data
-            - mountPath: /data/configdb
-              name: mongodb-dish-data-config
       restartPolicy: Always
       volumes:
         - name: mongodb-dish-data
           persistentVolumeClaim:
             claimName: mongodb-dish-data
-        - name: mongodb-dish-data-config
-          persistentVolumeClaim:
-            claimName: mongodb-dish-data-config
 status: {}

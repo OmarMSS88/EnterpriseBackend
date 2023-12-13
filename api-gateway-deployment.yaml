@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: "C:\\Users\\eigenaar\\Documents\\kompose.exe convert"
-    kompose.version: "1.26.0 (40646f47)"
+    kompose.cmd: C:\Users\eigenaar\Documents\kompose.exe convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
   labels:
     io.kompose.service: api-gateway
   name: api-gateway
@@ -16,8 +17,9 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: "C:\\Users\\eigenaar\\Documents\\kompose.exe convert"
-        kompose.version: "1.26.0 (40646f47)"
+        kompose.cmd: C:\Users\eigenaar\Documents\kompose.exe convert
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
       labels:
         io.kompose.service: api-gateway
     spec:

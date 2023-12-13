@@ -33,14 +33,9 @@ spec:
           volumeMounts:
             - mountPath: /data/db
               name: mongodb-table-data
-            - mountPath: /data/configdb
-              name: mongo-table-data-config
       restartPolicy: Always
       volumes:
         - name: mongodb-table-data
           persistentVolumeClaim:
             claimName: mongodb-table-data
-        - name: mongo-table-data-config
-          persistentVolumeClaim:
-            claimName: mongo-table-data-config
 status: {}
