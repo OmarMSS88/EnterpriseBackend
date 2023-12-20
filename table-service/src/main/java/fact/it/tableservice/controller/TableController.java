@@ -31,4 +31,14 @@ public class TableController {
     public List<TableResponse> getAllTables(){
         return tableService.getAllTables();
     }
+
+    @PutMapping("/tables/{id}")
+    public void updateTable(@RequestBody TableRequest tableRequest, @PathVariable String id) {
+        tableService.updateTable(tableRequest, id);
+    }
+
+    @DeleteMapping("/tables/{id}")
+    public void deleteDish(@PathVariable String id) {
+        tableService.deleteTable(id);
+    }
 }

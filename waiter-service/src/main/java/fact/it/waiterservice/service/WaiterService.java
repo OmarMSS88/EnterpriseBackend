@@ -1,23 +1,33 @@
 package fact.it.waiterservice.service;
 
+import fact.it.waiterservice.dto.WaiterRequest;
 import fact.it.waiterservice.dto.WaiterResponse;
 import fact.it.waiterservice.model.Waiter;
 import fact.it.waiterservice.repository.WaiterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
 public class WaiterService {
     private final WaiterRepository waiterRepository;
 
-    public void createWaiter(WaiterResponse waiterResponse){
+    private List<WaiterRequest> waiters = new ArrayList<>(Arrays.asList(
+            new WaiterRequest("1BAC",  "Ben Active Cal", false),
+            new WaiterRequest("2JC", "James Cameron", true),
+            new WaiterRequest("3HF", "Harry Fields", false)
+    ));
+
+    public void createWaiter(WaiterRequest waiterRequest){
         Waiter waiter = Waiter.builder()
-                .waiterCode(waiterResponse.getWaiterCode())
-                .name(waiterResponse.getName())
-                .receivedTip(waiterResponse.isReceivedTip())
+                .waiterCode(waiterRequest.getWaiterCode())
+                .name(waiterRequest.getName())
+                .receivedTip(waiterRequest.isReceivedTip())
                 .build();
 
         waiterRepository.save(waiter);
@@ -36,5 +46,20 @@ public class WaiterService {
                 .name(waiter.getName())
                 .receivedTip(waiter.isReceivedTip())
                 .build();
+    }
+
+    public void updateWaiter(WaiterRequest waiterRequest, String id) {
+        Waiter waiterToUpdate = waiterRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Waiter not found"));
+
+        waiterToUpdate.setWaiterCode(waiterRequest.getWaiterCode());
+        waiterToUpdate.setName(waiterRequest.getName());
+        waiterToUpdate.setReceivedTip(waiterRequest.isReceivedTip());
+
+        waiterRepository.save(waiterToUpdate);
+    }
+
+    public void deleteWaiter(String id) {
+        waiterRepository.deleteById(id);
     }
 }

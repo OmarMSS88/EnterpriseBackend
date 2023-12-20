@@ -40,17 +40,18 @@ public class DishService {
     }
 
     public void updateDish(DishRequest dishRequest, String id) {
-        for (int i = 0; i < dishes.size(); i++) {
-            DishRequest d = dishes.get(i);
-            if (Objects.equals(d.getDishNr(), id)) {
-                dishes.set(i, dishRequest);
-                return;
-            }
-        }
+        Dish dishToUpdate = dishRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Dish not found"));
+
+        dishToUpdate.setDishNr(dishRequest.getDishNr());
+        dishToUpdate.setDishName(dishRequest.getDishName());
+        dishToUpdate.setPrice(dishRequest.getPrice());
+
+        dishRepository.save(dishToUpdate);
     }
 
     public void deleteDish(String id) {
-        dishes.removeIf(d -> Objects.equals(d.getDishNr(), id));
+        dishRepository.deleteById(id);
     }
 
     private DishResponse mapToDishResponse(Dish dish){
