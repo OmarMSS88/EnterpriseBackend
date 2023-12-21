@@ -36,7 +36,7 @@ services:
       - mongo-table
     image: jetzel/table-service
     ports:
-      - 27020:27017
+      - 8080:8080
     environment:
       MONGODB_PORT: 27017
       MONGODB_HOST: mongo-table
@@ -46,7 +46,7 @@ services:
       - mongo-dish
     image: jetzel/dish-service
     ports:
-      - 27022:27017
+      - 8081:8081
     environment:
       MONGODB_PORT: 27019
       MONGODB_HOST: mongo-dish
@@ -56,7 +56,7 @@ services:
       - mongo-waiter
     image: jetzel/waiter-service
     ports:
-      - 27021:27017
+      - 8082
     environment:
       MONGODB_PORT: 27018
       MONGODB_HOST: mongo-waiter
@@ -66,7 +66,7 @@ services:
       - mysql-visit
     image: jetzel/visit-service
     ports:
-      - 8081:8081
+      - 8080:8080
     environment:
       TABLE_SERVICE_BASEURL: table-service:8080
       DISH_SERVICE_BASEURL: dish-service:8082
@@ -87,10 +87,10 @@ services:
     ports:
       - 8084:8084
     environment:
-      TABLE_SERVICE_BASEURL: table-service:8080
-      DISH_SERVICE_BASEURL: dish-service:8082
+      TABLE_SERVICE_BASEURL: table-service:8082
+      DISH_SERVICE_BASEURL: dish-service:8081
       WAITER_SERVICE_BASEURL: waiter-service:8083
-      VISIT_SERVICE_BASEURL: visit-service:8081
+      VISIT_SERVICE_BASEURL: visit-service:8080
 
 volumes:
   mongodb_table_data:
