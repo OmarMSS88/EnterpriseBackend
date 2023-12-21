@@ -56,7 +56,7 @@ services:
       - mongo-waiter
     image: jetzel/waiter-service
     ports:
-      - 8082
+      - 8082:8082
     environment:
       MONGODB_PORT: 27018
       MONGODB_HOST: mongo-waiter
