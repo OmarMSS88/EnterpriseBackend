@@ -18,7 +18,6 @@ spring:
             - Path=/visits
           filters:
             - SetPath=/api/visit
-            
         - id: table-service
           uri: http://$(TABLE_SERVICE_BASEURL:localhost:8082)
           predicates:
