@@ -2,6 +2,7 @@ package fact.it.visitservice.controller;
 
 import fact.it.visitservice.dto.VisitRequest;
 import fact.it.visitservice.dto.VisitResponse;
+import fact.it.visitservice.dto.VisitorItemDto;
 import fact.it.visitservice.service.VisitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,9 +23,19 @@ public class VisitController {
         return (result ? "Visit placed successfully" : "Visit placement failed");
     }
 
-    @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<VisitResponse> getAllVisits(){
         return visitService.getAllVisits();
+    }
+
+    @PutMapping("/visits/{id}")
+    public void updateVisit(@RequestBody VisitorItemDto visitRequest, @PathVariable String id) {
+        visitService.updateVisit(visitRequest, id);
+    }
+
+    @DeleteMapping("/visits/{id}")
+    public void deleteVisit(@PathVariable String id) {
+        visitService.deleteVisit(id);
     }
 }
