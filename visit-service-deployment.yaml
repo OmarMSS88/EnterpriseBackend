@@ -26,7 +26,7 @@ spec:
       containers:
         - env:
             - name: DISH_SERVICE_BASEURL
-              value: dish-service:8082
+              value: dish-service:8081
             - name: MYSQL_DB_HOST
               value: mysql-visit
             - name: MYSQL_DB_PASSWORD
@@ -35,16 +35,14 @@ spec:
               value: "3306"
             - name: MYSQL_DB_USERNAME
               value: root
-            - name: MYSQL_ROOT_PASSWORD
-              value: root
             - name: TABLE_SERVICE_BASEURL
-              value: table-service:8080
+              value: table-service:8082
             - name: WAITER_SERVICE_BASEURL
               value: waiter-service:8083
           image: jetzel/visit-service
           name: visit-service
           ports:
-            - containerPort: 8081
+            - containerPort: 8080
           resources: {}
       restartPolicy: Always
 status: {}

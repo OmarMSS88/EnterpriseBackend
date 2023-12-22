@@ -26,11 +26,11 @@ spec:
       containers:
         - env:
             - name: DISH_SERVICE_BASEURL
-              value: dish-service:8082
+              value: dish-service:8081
             - name: TABLE_SERVICE_BASEURL
-              value: table-service:8080
+              value: table-service:8082
             - name: VISIT_SERVICE_BASEURL
-              value: visit-service:8081
+              value: visit-service:8080
             - name: WAITER_SERVICE_BASEURL
               value: waiter-service:8083
           image: jetzel/api-gateway

@@ -10,9 +10,9 @@ metadata:
   name: visit-service
 spec:
   ports:
-    - name: "8081"
-      port: 8081
-      targetPort: 8081
+    - name: "8080"
+      port: 8080
+      targetPort: 8080
   selector:
     io.kompose.service: visit-service
 status:

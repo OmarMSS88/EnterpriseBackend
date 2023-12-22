@@ -10,9 +10,9 @@ metadata:
   name: table-service
 spec:
   ports:
-    - name: "27021"
-      port: 27021
-      targetPort: 27017
+    - name: "8082"
+      port: 8082
+      targetPort: 8082
   selector:
     io.kompose.service: table-service
 status:

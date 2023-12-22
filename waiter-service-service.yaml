@@ -10,9 +10,9 @@ metadata:
   name: waiter-service
 spec:
   ports:
-    - name: "27021"
-      port: 27021
-      targetPort: 27017
+    - name: "8083"
+      port: 8083
+      targetPort: 8083
   selector:
     io.kompose.service: waiter-service
 status:

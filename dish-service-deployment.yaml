@@ -32,7 +32,7 @@ spec:
           image: jetzel/dish-service
           name: dish-service
           ports:
-            - containerPort: 27017
+            - containerPort: 8081
           resources: {}
       restartPolicy: Always
 status: {}
