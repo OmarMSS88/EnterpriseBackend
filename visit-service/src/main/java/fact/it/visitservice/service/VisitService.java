@@ -48,23 +48,26 @@ public class VisitService {
         visit.setVisitorItemList(visitorItems);
 
         // Fetch data from external services
-        TableResponse[] tableResponses = webClient.get()
-                .uri("/tables")  // Adjust the URI according to your API
+        TableResponse[] tableResponseArray = webClient.get()
+                .uri("http://" + tableServiceBaseUrl + "/api/table")  // Adjust the URI according to your API
                 .retrieve()
                 .bodyToMono(TableResponse[].class)
                 .block();
 
         DishResponse[] dishResponses = webClient.get()
-                .uri("/dishes")  // Adjust the URI according to your API
+                .uri("http://" + dishServiceBaseUrl + "/api/dish")  // Adjust the URI according to your API
                 .retrieve()
                 .bodyToMono(DishResponse[].class)
                 .block();
 
         WaiterResponse[] waiterResponses = webClient.get()
-                .uri("/waiters")  // Adjust the URI according to your API
+                .uri("http://" + waiterServiceBaseUrl + "/api/waiter")  // Adjust the URI according to your API
                 .retrieve()
                 .bodyToMono(WaiterResponse[].class)
                 .block();
+
+        visit.getVisitorItemList().stream()
+                        .collect(Collectors.toList());
         
 
         visitRepository.save(visit);
