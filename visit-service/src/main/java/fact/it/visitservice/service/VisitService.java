@@ -84,7 +84,7 @@ public class VisitService {
 
     public void updateVisit(VisitorItemDto visitRequest, String id) {
         Visit visitToUpdate = visitRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Dish not found"));
+                .orElseThrow(() -> new RuntimeException("Visit not found"));
 
         visitToUpdate.setVisitNumber(visitRequest.getId().toString());
 
