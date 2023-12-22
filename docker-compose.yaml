@@ -24,7 +24,7 @@ services:
   mysql-visit:
     image: mysql:latest
     ports:
-      - 3307:3306
+      - 3306:3306
     volumes:
       - mysql_visit_data:/var/lib/mysql
     environment:
