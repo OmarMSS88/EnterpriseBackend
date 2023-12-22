@@ -28,7 +28,7 @@ services:
     volumes:
       - mysql_visit_data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: abc123
+      MYSQL_ROOT_PASSWORD: root
       
 
   table-service:
@@ -85,6 +85,11 @@ services:
     image: jetzel/api-gateway
     ports:
       - 8084:8084
+    links:
+      - table-service
+      - dish-service
+      - waiter-service
+      - visit-service
     environment:
       TABLE_SERVICE_BASEURL: table-service:8082
       DISH_SERVICE_BASEURL: dish-service:8081
