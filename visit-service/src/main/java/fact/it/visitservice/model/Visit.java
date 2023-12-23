@@ -17,7 +17,7 @@ import java.util.List;
 public class Visit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
     private String visitNumber;
     @OneToMany(cascade = CascadeType.ALL)
     private List<VisitorItem> visitorItemList;
