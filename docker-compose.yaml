@@ -81,6 +81,8 @@ services:
       MYSQL_DB_PASSWORD: abc123
       MYSQL_DB_HOST: mysql-visit
       MYSQL_DB_PORT: 3306  
+    volumes:
+      - enterprisebackend_mysql_visit_data:/var/lib/mysql
 
   api-gateway:
     depends_on:
@@ -102,3 +104,5 @@ volumes:
   mongodb_dish_data:
   mongodb_waiter_data:
   mysql_visit_data:
+  enterprisebackend_mysql_visit_data:
+    external: true
