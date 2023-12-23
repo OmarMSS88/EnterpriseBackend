@@ -13,7 +13,7 @@ spring:
     gateway:
       routes:
         - id: visit-service
-          uri: http://$(VISIT_SERVICE_BASEURL:localhost:8080)
+          uri: http://${VISIT_SERVICE_BASEURL:localhost:8080}
           predicates:
             - Path=/visits
           filters:
@@ -24,19 +24,19 @@ spring:
                 redis-rate-limiter.burstCapacity: 1000
                 redis-rate-limiter.requestedTokens: 1
         - id: table-service
-          uri: http://$(TABLE_SERVICE_BASEURL:localhost:8082)
+          uri: http://${TABLE_SERVICE_BASEURL:localhost:8082}
           predicates:
             - Path=/tables
           filters:
             - SetPath=/api/table
         - id: dish-service
-          uri: http://$(DISH_SERVICE_BASEURL:localhost:8081)
+          uri: http://${DISH_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Path=/dishes
           filters:
             - SetPath=/api/dish
         - id: waiter-service
-          uri: http://$(WAITER_SERVICE_BASEURL:localhost:8083)
+          uri: http://${WAITER_SERVICE_BASEURL:localhost:8083}
           predicates:
             - Path=/waiters
           filters:
