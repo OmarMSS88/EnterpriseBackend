@@ -23,4 +23,6 @@ public class VisitorItem {
     private boolean paid;
     private int quantity;
     private double amount;
+    @ManyToOne
+    private Visit visit;
 }
