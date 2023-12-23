@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "visitoritems")
+@Table(name = "visitoritem")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,6 +23,4 @@ public class VisitorItem {
     private boolean paid;
     private int quantity;
     private double amount;
-    @ManyToOne
-    private Visit visit;
 }
