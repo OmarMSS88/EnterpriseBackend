@@ -18,7 +18,7 @@ public class VisitController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public String placeOrder(@RequestBody VisitRequest visitRequest){
+    public String placeVisit(@RequestBody VisitRequest visitRequest){
         boolean result = visitService.placeVisit(visitRequest);
         return (result ? "Visit placed successfully" : "Visit placement failed");
     }
