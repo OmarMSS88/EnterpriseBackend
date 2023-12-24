@@ -23,7 +23,7 @@ public class VisitorItem {
     private boolean paid;
     private int quantity;
     private double amount;
-    @ManyToOne
+    /*@ManyToOne
     private Visit visit;
 
     public VisitorItem(long id, String itemCode, LocalDate date, boolean paid, int quantity, int amount) {
@@ -33,5 +33,5 @@ public class VisitorItem {
         this.paid = paid;
         this.quantity = quantity;
         this.amount = amount;
-    }
+    }*/
 }
