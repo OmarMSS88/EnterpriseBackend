@@ -92,7 +92,7 @@ class VisitserviceApplicationTests {
         waiterResponse.setReceivedTip(false);
 
         Visit visit = new Visit();
-        visit.setId("1L");
+        visit.setId(1L);
         visit.setVisitNumber("2SA");
         visit.setVisitorItemList(Collections.singletonList(visitorItem1));
 
@@ -126,8 +126,8 @@ class VisitserviceApplicationTests {
         VisitorItem visitorItem2 = new VisitorItem(2L, "5CA", LocalDate.now(), true, 16, 20);
 
         List<Visit> mockvisits = new ArrayList<>(Arrays.asList(
-                Visit.builder().id("1").visitNumber("1").visitorItemList(Arrays.asList(visitorItem1)).build(),
-                Visit.builder().id("2").visitNumber("2").visitorItemList(Arrays.asList(visitorItem2)).build()
+                Visit.builder().id(1L).visitNumber("1").visitorItemList(Arrays.asList(visitorItem1)).build(),
+                Visit.builder().id(2L).visitNumber("2").visitorItemList(Arrays.asList(visitorItem2)).build()
         ));
 
 
@@ -170,7 +170,7 @@ class VisitserviceApplicationTests {
 
         VisitorItem visitorItem = new VisitorItem(2L, "3ZQ", LocalDate.now(), false, 10, 20);
 
-        Visit existingVisit = new Visit("2L", "2", Arrays.asList(visitorItem));
+        Visit existingVisit = new Visit(2L, "2", Arrays.asList(visitorItem));
 
         // Mock the behavior of the repository
         when(visitRepository.findById(visitIdToUpdate)).thenReturn(Optional.of(existingVisit));
