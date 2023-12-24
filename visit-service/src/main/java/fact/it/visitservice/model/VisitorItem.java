@@ -26,6 +26,12 @@ public class VisitorItem {
     @ManyToOne
     private Visit visit;
 
-    public VisitorItem(long l, String s, LocalDate now, boolean b, int i, int i1) {
+    public VisitorItem(long id, String itemCode, LocalDate date, boolean paid, int quantity, int amount) {
+        this.id = id;
+        this.itemCode = itemCode;
+        this.date = date;
+        this.paid = paid;
+        this.quantity = quantity;
+        this.amount = amount;
     }
 }
