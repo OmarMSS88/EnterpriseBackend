@@ -19,7 +19,7 @@ public class Visit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String visitNumber;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "visit")
+    @OneToMany(mappedBy = "visit")
     private List<VisitorItem> visitorItemList;
 
 }

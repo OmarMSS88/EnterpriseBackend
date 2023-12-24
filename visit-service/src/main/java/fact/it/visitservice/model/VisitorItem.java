@@ -23,4 +23,9 @@ public class VisitorItem {
     private boolean paid;
     private int quantity;
     private double amount;
+    @ManyToOne
+    private Visit visit;
+
+    public VisitorItem(long l, String s, LocalDate now, boolean b, int i, int i1) {
+    }
 }
