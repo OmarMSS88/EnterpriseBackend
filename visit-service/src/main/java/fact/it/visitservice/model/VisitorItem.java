@@ -23,4 +23,7 @@ public class VisitorItem {
     private boolean paid;
     private int quantity;
     private double amount;
+    @ManyToOne
+    @JoinColumn(name = "visit_id")  // This should match the name of the join column in your database table
+    private Visit visit;
 }
