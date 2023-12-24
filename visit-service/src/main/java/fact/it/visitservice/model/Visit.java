@@ -6,6 +6,7 @@ import jdk.jshell.Snippet;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,6 @@ public class Visit {
     private Long id;
     private String visitNumber;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "visit")
-    private List<VisitorItem> visitorItemList;
+    private List<VisitorItem> visitorItemList = new ArrayList<>();
 
 }
