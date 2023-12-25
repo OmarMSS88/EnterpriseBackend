@@ -29,12 +29,7 @@ public class VisitService {
 
     @Value("${waiterservice.baseurl}")
     private String waiterServiceBaseUrl;
-
-    private List<VisitorItemDto> visits = new ArrayList<>(Arrays.asList(
-            new VisitorItemDto(1L, "Test", LocalDate.now(), false, 4),
-            new VisitorItemDto(2L, "John Snow", LocalDate.now(), true, 8),
-            new VisitorItemDto(3L, "Internet Explorer", LocalDate.now(), false, 0)
-    ));
+    
 
     public boolean placeVisit(VisitRequest visitRequest){
         Visit visit = new Visit();
