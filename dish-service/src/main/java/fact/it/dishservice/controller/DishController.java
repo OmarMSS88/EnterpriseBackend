@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/dish")
 @RequiredArgsConstructor
 public class DishController {
-    private final DishService dishService;
+    public final DishService dishService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
