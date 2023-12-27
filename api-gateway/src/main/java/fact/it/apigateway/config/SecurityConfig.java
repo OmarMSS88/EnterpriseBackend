@@ -33,6 +33,12 @@ public class SecurityConfig {
                                 .anyExchange()
                                 .authenticated()
                 )
+                .authorizeExchange(exchange ->
+                        exchange.pathMatchers(HttpMethod.GET, "/dishes")
+                                .permitAll()
+                                .anyExchange()
+                                .authenticated()
+                )
                 .oauth2ResourceServer((oauth2 -> oauth2
                         .jwt(Customizer.withDefaults())
                 ));

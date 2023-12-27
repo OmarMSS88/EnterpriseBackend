@@ -40,7 +40,7 @@ public class DishService {
                 new Dish("3", "3", "Tiramisu", 6.99)
         ));
 
-//        dishes = dishRepository.findAll();
+        dishes = dishRepository.findAll();
 
         return dishes.stream().map(this::mapToDishResponse).toList();
     }
