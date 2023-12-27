@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/dish")
+@RequestMapping(path = "/api/dish")
 @RequiredArgsConstructor
 public class DishController {
-    public final DishService dishService;
+    private final DishService dishService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
