@@ -34,7 +34,13 @@ public class DishService {
     }
 
     public List<DishResponse> getAllDishes(){
-        List<Dish> dishes = dishRepository.findAll();
+        List<Dish> dishes = new ArrayList<>(Arrays.asList(
+                new Dish("1", "1",  "Pizza Margherita", 10.99),
+                new Dish("2", "2", "Spaghetti Carbonara", 12.99),
+                new Dish("3", "3", "Tiramisu", 6.99)
+        ));
+
+//        dishes = dishRepository.findAll();
 
         return dishes.stream().map(this::mapToDishResponse).toList();
     }
