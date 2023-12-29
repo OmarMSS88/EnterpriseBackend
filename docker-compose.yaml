@@ -69,10 +69,6 @@ services:
     image: jetzel/visit-service
     ports:
       - 8080:8080
-    links:
-      - table-service
-      - dish-service
-      - waiter-service
     environment:
       TABLE_SERVICE_BASEURL: table-service:8082
       DISH_SERVICE_BASEURL: dish-service:8081
