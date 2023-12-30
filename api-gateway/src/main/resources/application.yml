@@ -16,7 +16,6 @@ spring:
           uri: http://${VISIT_SERVICE_BASEURL:localhost:8080}
           predicates:
             - Path=/visits
-            - Method=GET
           filters:
             - SetPath=/api/visit
             - name: RequestRateLimiter
