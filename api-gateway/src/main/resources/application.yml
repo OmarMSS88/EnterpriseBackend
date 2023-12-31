@@ -13,7 +13,7 @@ spring:
     gateway:
       routes:
         - id: visit-service
-          uri: https://${VISIT_SERVICE_BASEURL:localhost:8080}-jetzeluyten.cloud.okteto.net
+          uri: http://${VISIT_SERVICE_BASEURL:localhost:8080}
           predicates:
             - Path=/visits
           filters:
