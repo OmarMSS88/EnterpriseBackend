@@ -19,38 +19,38 @@ spring:
         jwt:
           issuer-uri: https://accounts.google.com
           jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
-#  cloud:
-#    gateway:
-#      routes:
-#        - id: visit-service
-#          uri: http://${VISIT_SERVICE_BASEURL:localhost:8080}
-#          predicates:
-#            - Path=/visits
-#          filters:
-#            - SetPath=/api/visit
-#            - name: RequestRateLimiter
-#              args:
-#                redis-rate-limiter.replenishRate: 500
-#                redis-rate-limiter.burstCapacity: 1000
-#                redis-rate-limiter.requestedTokens: 1
-#        - id: table-service
-#          uri: http://${TABLE_SERVICE_BASEURL:localhost:8082}
-#          predicates:
-#            - Path=/tables
-#          filters:
-#            - SetPath=/api/table
-#        - id: dish-service
-#          uri: http://${DISH_SERVICE_BASEURL:localhost:8081}
-#          predicates:
-#            - Path=/dishes
-#          filters:
-#            - SetPath=/api/dish
-#        - id: waiter-service
-#          uri: http://${WAITER_SERVICE_BASEURL:localhost:8083}
-#          predicates:
-#            - Path=/waiters
-#          filters:
-#            - SetPath=/api/waiter
+  cloud:
+    gateway:
+      routes:
+        - id: visit-service
+          uri: http://${VISIT_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/visits
+          filters:
+            - SetPath=/api/visit
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 500
+                redis-rate-limiter.burstCapacity: 1000
+                redis-rate-limiter.requestedTokens: 1
+        - id: table-service
+          uri: http://${TABLE_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/tables
+          filters:
+            - SetPath=/api/table
+        - id: dish-service
+          uri: http://${DISH_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Path=/dishes
+          filters:
+            - SetPath=/api/dish
+        - id: waiter-service
+          uri: http://${WAITER_SERVICE_BASEURL:localhost:8083}
+          predicates:
+            - Path=/waiters
+          filters:
+            - SetPath=/api/waiter
 
 server:
   port: 8084
