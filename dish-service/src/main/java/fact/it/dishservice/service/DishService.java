@@ -4,7 +4,9 @@ import fact.it.dishservice.repository.DishRepository;
 import fact.it.dishservice.dto.DishRequest;
 import fact.it.dishservice.dto.DishResponse;
 import fact.it.dishservice.model.Dish;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.Objects;
 @Service
 @RequiredArgsConstructor
 public class DishService {
+    @Autowired
     private final DishRepository dishRepository;
 
     private List<DishRequest> dishes = new ArrayList<>(Arrays.asList(
@@ -22,6 +25,17 @@ public class DishService {
             new DishRequest("2", "Spaghetti Carbonara", 12.99),
             new DishRequest("3", "Tiramisu", 6.99)
     ));
+
+    @PostConstruct
+    private void postConstruct() {
+        Dish dish1 = new Dish("1", "1", "Pizza Margherita", 10.99);
+        Dish dish2 = new Dish("2", "1", "Spaghetti Carbonara", 12.99);
+        Dish dish3 = new Dish("3", "1", "Tiramisu", 6.99);
+
+        dishRepository.save(dish1);
+        dishRepository.save(dish2);
+        dishRepository.save(dish3);
+    }
 
     public void createDish(DishRequest dishRequest){
         Dish dish = Dish.builder()
