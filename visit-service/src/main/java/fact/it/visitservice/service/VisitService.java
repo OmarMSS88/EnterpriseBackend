@@ -4,10 +4,13 @@ import fact.it.visitservice.dto.*;
 import fact.it.visitservice.model.Visit;
 import fact.it.visitservice.model.VisitorItem;
 import fact.it.visitservice.repository.VisitRepository;
+import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalDate;
@@ -18,6 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Transactional
 public class VisitService {
+    @Autowired
     private final VisitRepository visitRepository;
     private final WebClient webClient;
 
@@ -29,6 +33,15 @@ public class VisitService {
 
     @Value("${waiterservice.baseurl}")
     private String waiterServiceBaseUrl;
+
+    @PostConstruct
+    private void postConstruct() {
+        List<VisitorItem> visitorItems = Arrays.asList(
+                new VisitorItem(1, "2AS", LocalDate.now(), false, 5, 10)
+        );
+        Visit visit = new Visit(2L, "SA10", visitorItems);
+        visitRepository.save(visit);
+    }
     
 
     public boolean placeVisit(VisitRequest visitRequest){
