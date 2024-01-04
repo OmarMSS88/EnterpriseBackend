@@ -33,8 +33,8 @@ public class DishService {
         Dish dish3 = new Dish("3", "1", "Tiramisu", 6.99);
 
         dishRepository.save(dish1);
-        dishRepository.save(dish2);
-        dishRepository.save(dish3);
+//        dishRepository.save(dish2);
+//        dishRepository.save(dish3);
     }
 
     public void createDish(DishRequest dishRequest){
