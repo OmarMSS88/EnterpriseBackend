@@ -32,6 +32,8 @@ public class TableService {
         Table B1 = new Table("A1", "B2", 4);
         Table C4 = new Table("A1", "C4", 8);
         tableRepository.save(table);
+        tableRepository.save(B1);
+        tableRepository.save(C4);
     }
 
     public void createTable(TableRequest tableRequest){
