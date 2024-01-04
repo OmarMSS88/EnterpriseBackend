@@ -4,6 +4,7 @@ import fact.it.tableservice.dto.TableRequest;
 import fact.it.tableservice.dto.TableResponse;
 import fact.it.tableservice.model.Table;
 import fact.it.tableservice.repository.TableRepository;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,16 @@ public class TableService {
             new TableRequest("B1", 4),
             new TableRequest("C4", 8)
     ));
+
+    @PostConstruct
+    private void postConstruct() {
+        Table A1 = new Table("A1", "A1", 2);
+        Table B1 = new Table("A1", "B2", 4);
+        Table C4 = new Table("A1", "C4", 8);
+        tableRepository.save(A1);
+        tableRepository.save(B1);
+        tableRepository.save(C4);
+    }
 
     public void createTable(TableRequest tableRequest){
         Table table = Table.builder()

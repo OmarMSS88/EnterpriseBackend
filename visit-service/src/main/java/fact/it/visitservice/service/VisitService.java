@@ -39,7 +39,8 @@ public class VisitService {
         List<VisitorItem> visitorItems = Arrays.asList(
                 new VisitorItem(1, "2AS", LocalDate.now(), false, 5, 10)
         );
-        Visit visit = new Visit(2L, "SA10", visitorItems);
+        VisitorItem visitorItem = new VisitorItem(1, "2AS", LocalDate.now(), false, 5, 10);
+        Visit visit = new Visit(2L, "SA10", Arrays.asList(visitorItem));
         visitRepository.save(visit);
     }
     
