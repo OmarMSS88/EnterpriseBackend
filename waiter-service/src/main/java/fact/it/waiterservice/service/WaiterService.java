@@ -29,6 +29,8 @@ public class WaiterService {
     @PostConstruct
     private void postConstruct() {
         Waiter waiterBen = new Waiter("1", "1BAC", "Ben Active Cal", false);
+        Waiter waiterJames = new Waiter("2", "2JC", "James Cameron", true);
+        Waiter waiterHarry = new Waiter("3", "3HF", "Harry Fields", false);
 
         waiterRepository.save(waiterBen);
     }
