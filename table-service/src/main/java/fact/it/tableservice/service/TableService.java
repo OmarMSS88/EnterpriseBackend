@@ -6,6 +6,7 @@ import fact.it.tableservice.model.Table;
 import fact.it.tableservice.repository.TableRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.Objects;
 @Service
 @RequiredArgsConstructor
 public class TableService {
+    @Autowired
     private final TableRepository tableRepository;
 
     private List<TableRequest> tables = new ArrayList<>(Arrays.asList(
