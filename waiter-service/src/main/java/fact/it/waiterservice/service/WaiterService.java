@@ -33,6 +33,8 @@ public class WaiterService {
         Waiter waiterHarry = new Waiter("3", "3HF", "Harry Fields", false);
 
         waiterRepository.save(waiterBen);
+        waiterRepository.save(waiterJames);
+        waiterRepository.save(waiterHarry);
     }
 
     public void createWaiter(WaiterRequest waiterRequest){
