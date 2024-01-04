@@ -28,10 +28,10 @@ public class TableService {
 
     @PostConstruct
     private void postConstruct() {
-        Table A1 = new Table("A1", "A1", 2);
+        Table table = new Table("A1", "A1", 2);
         Table B1 = new Table("A1", "B2", 4);
         Table C4 = new Table("A1", "C4", 8);
-        tableRepository.save(A1);
+        tableRepository.save(table);
     }
 
     public void createTable(TableRequest tableRequest){
