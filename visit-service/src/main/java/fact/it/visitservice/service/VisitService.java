@@ -103,7 +103,7 @@ public class VisitService {
         return visits.stream()
                 .map(visit -> new VisitResponse(
                         visit.getVisitNumber(),
-                        new ArrayList<>(mapToVisitorItemDto(visit.getVisitorItemList()))
+                        mapToVisitorItemDto(visit.getVisitorItemList())
                 ))
                 .collect(Collectors.toList());
     }
