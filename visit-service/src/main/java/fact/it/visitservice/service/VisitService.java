@@ -46,7 +46,7 @@ public class VisitService {
         
         visitRepository.save(visit);
 
-        VisitorItem visitorItem = new VisitorItem(1, "2AS", LocalDate.now(), false, 5, 10);
+        VisitorItem visitorItem = new VisitorItem(2, "5AS", LocalDate.now(), false, 4, 5);
         Visit visit2 = new Visit();
         visit2.setId(3L);
         visit2.setVisitNumber("BS50");
