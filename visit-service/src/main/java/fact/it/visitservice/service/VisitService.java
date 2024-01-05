@@ -34,9 +34,8 @@ public class VisitService {
     @Value("${waiterservice.baseurl}")
     private String waiterServiceBaseUrl;
 
-    @Transactional
     @PostConstruct
-    public void postConstruct() {
+    private void postConstruct() {
         List<VisitorItem> visitorItems = Arrays.asList(
                 new VisitorItem(1, "2AS", LocalDate.now(), false, 5, 10)
         );
