@@ -2,8 +2,9 @@ new Vue({
     el: '#app',
     data: {
       dishes: [
-        { id: 1, name: 'Dish 1', price: 10.99 },
-      { id: 2, name: 'Dish 2', price: 8.99 },
+        { id: 1, name: 'Pizza Margherita', price: 10.99 },
+      { id: 2, name: 'Spaghetti Carbonara', price: 12.99 },
+      { id: 3, name: 'Tiramisu', price: 6.99 },
       ],
       newDish: { name: '', price: 0 },
       visitors: [],
