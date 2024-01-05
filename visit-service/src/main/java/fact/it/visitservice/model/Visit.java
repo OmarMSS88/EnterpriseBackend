@@ -21,6 +21,13 @@ public class Visit {
     private Long id;
     private String visitNumber;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "visit")
-    private List<VisitorItem> visitorItemList = new ArrayList<>();
+    private List<VisitorItem> visitorItemList;
+
+    public void setVisitorItemList(List<VisitorItem> visitorItemList) {
+        this.visitorItemList = visitorItemList;
+        for (VisitorItem item : visitorItemList) {
+            item.setVisit(this);
+        }
+    }
 
 }
