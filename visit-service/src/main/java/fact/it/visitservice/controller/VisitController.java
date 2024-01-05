@@ -3,7 +3,6 @@ package fact.it.visitservice.controller;
 import fact.it.visitservice.dto.VisitRequest;
 import fact.it.visitservice.dto.VisitResponse;
 import fact.it.visitservice.dto.VisitorItemDto;
-import fact.it.visitservice.model.VisitorItem;
 import fact.it.visitservice.service.VisitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,8 +18,9 @@ public class VisitController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public void createVisit(@RequestBody VisitRequest visitRequest){
-        visitService.createVisit(visitRequest);
+    public String placeVisit(@RequestBody VisitRequest visitRequest){
+        boolean result = visitService.placeVisit(visitRequest);
+        return (result ? "Visit placed successfully" : "Visit placement failed");
     }
 
     @GetMapping("/all")
@@ -30,7 +30,7 @@ public class VisitController {
     }
 
     @PutMapping("/visits/{id}")
-    public void updateVisit(@RequestBody VisitorItem visitRequest, @PathVariable String id) {
+    public void updateVisit(@RequestBody VisitorItemDto visitRequest, @PathVariable String id) {
         visitService.updateVisit(visitRequest, id);
     }
 
