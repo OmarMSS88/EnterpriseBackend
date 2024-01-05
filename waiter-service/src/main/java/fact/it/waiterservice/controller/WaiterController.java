@@ -15,6 +15,13 @@ import java.util.List;
 public class WaiterController {
     private final WaiterService waiterService;
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    public void createWaiter
+            (@RequestBody WaiterRequest waiterRequest){
+        waiterService.createWaiter(waiterRequest);
+    }
+
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<WaiterResponse> getAllWaiters(){
