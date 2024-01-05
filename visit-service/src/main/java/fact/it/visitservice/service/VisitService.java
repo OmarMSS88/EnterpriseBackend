@@ -43,7 +43,7 @@ public class VisitService {
         VisitorItem visitorItem = new VisitorItem(1, "2AS", LocalDate.now(), false, 5, 10);
         visit.setId(2L);  // Set a unique ID.
         visit.setVisitNumber("SA10");  // Set other properties as needed.
-        visit.setVisitorItemList(visitorItems);
+        visit.setVisitorItemList(Arrays.asList(visitorItem));
         
         visitRepository.save(visit);
 
