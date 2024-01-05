@@ -55,65 +55,6 @@ class VisitserviceApplicationTests {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test
-    void placeVisit_shouldCreateVisitAndSaveToRepository() {
-        // Arrange
-
-        VisitorItem visitorItem1 = new VisitorItem(1L, "2C", LocalDate.now(), false, 4, 5);
-
-        VisitRequest visitRequest = new VisitRequest();
-        visitRequest.setVisitorItemDtoList(new ArrayList<>());
-        // populate orderRequest with test data
-        VisitorItemDto visitorItemDto = new VisitorItemDto();
-        visitorItemDto.setId(1L);
-        visitorItemDto.setItemCode("2ZE");
-        visitorItemDto.setDate(LocalDate.now());
-        visitorItemDto.setPaid(false);
-        visitorItemDto.setQuantity(4);
-
-        visitRequest.setVisitorItemDtoList(Collections.singletonList(visitorItemDto));
-
-        TableResponse tableResponse = new TableResponse();
-        // populate inventoryResponse with test data
-        tableResponse.setId("1");
-        tableResponse.setTableNr("2S");
-        tableResponse.setSeatAmount(5);
-
-        DishResponse dishResponse = new DishResponse();
-        // populate productResponse with test data
-        dishResponse.setId("1");
-        dishResponse.setDishName("Macaroni and Cheese");
-        dishResponse.setPrice(14.99);
-
-        WaiterResponse waiterResponse = new WaiterResponse();
-        waiterResponse.setId("1");
-        waiterResponse.setWaiterCode("2JB");
-        waiterResponse.setName("Justin Bieber");
-        waiterResponse.setReceivedTip(false);
-
-        Visit visit = new Visit();
-        visit.setId(1L);
-        visit.setVisitNumber("2SA");
-        visit.setVisitorItemList(Collections.singletonList(visitorItem1));
-
-        when(visitRepository.save(any(Visit.class))).thenReturn(visit);
-
-        when(webClient.get()).thenReturn(requestHeadersUriSpec);
-        when(requestHeadersUriSpec.uri(anyString(), Optional.ofNullable(any()))).thenReturn(requestHeadersSpec);
-        when(requestHeadersSpec.retrieve()).thenReturn(responseSpec);
-        when(responseSpec.bodyToMono(TableResponse[].class)).thenReturn(Mono.just(new TableResponse[]{tableResponse}));
-        when(responseSpec.bodyToMono(DishResponse[].class)).thenReturn(Mono.just(new DishResponse[]{dishResponse}));
-        when(responseSpec.bodyToMono(WaiterResponse[].class)).thenReturn(Mono.just(new WaiterResponse[]{waiterResponse}));
-
-        // Act
-        boolean result = visitService.placeVisit(visitRequest);
-
-        // Assert
-        assertTrue(result);
-
-        verify(visitRepository, times(1)).save(any(Visit.class));
-    }
-
 
     @Test
     void getAllVisits_shouldReturnListOfVisitResponses() {
@@ -160,9 +101,9 @@ class VisitserviceApplicationTests {
         WebClient webClient = mock(WebClient.class);
         VisitService visitService = new VisitService(visitRepository, webClient);
 
-        List<VisitorItemDto> visitorItems = Arrays.asList(
-                new VisitorItemDto(1L, "2C", LocalDate.now(), false, 5),
-                new VisitorItemDto(2L, "5CA", LocalDate.now(), true, 20)
+        List<VisitorItem> visitorItems = Arrays.asList(
+                new VisitorItem(1L, "2C", LocalDate.now(), false, 5, 6),
+                new VisitorItem(2L, "5CA", LocalDate.now(), true, 20, 10)
         );
 
         String visitIdToUpdate = "2";
@@ -189,7 +130,6 @@ class VisitserviceApplicationTests {
         assertNotNull(capturedVisit);
 
         // Verify that the updated visit has the expected values
-        List<VisitorItemDto> expectedVisitorItems = updatedVisitRequest.getVisitorItemDtoList();
         List<VisitorItem> actualVisitorItems = capturedVisit.getVisitorItemList();
 
         // Convert VisitorItem instances to VisitorItemDto instances for comparison

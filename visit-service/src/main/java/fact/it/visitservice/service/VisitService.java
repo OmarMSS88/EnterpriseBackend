@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalDate;
@@ -47,44 +46,14 @@ public class VisitService {
         
         visitRepository.save(visit);
     }
-    
 
-    public boolean placeVisit(VisitRequest visitRequest){
-        Visit visit = new Visit();
-        visit.setVisitNumber(UUID.randomUUID().toString());
 
-        List<VisitorItem> visitorItems = visitRequest.getVisitorItemDtoList()
-                .stream()
-                .map(this::mapToVisitorItem)
-                .toList();
-
-        visit.setVisitorItemList(visitorItems);
-
-        // Fetch data from external services
-        TableResponse[] tableResponseArray = webClient.get()
-                .uri("http://" + tableServiceBaseUrl + "/api/table")  // Adjust the URI according to your API
-                .retrieve()
-                .bodyToMono(TableResponse[].class)
-                .block();
-
-        DishResponse[] dishResponses = webClient.get()
-                .uri("http://" + dishServiceBaseUrl + "/api/dish")  // Adjust the URI according to your API
-                .retrieve()
-                .bodyToMono(DishResponse[].class)
-                .block();
-
-        WaiterResponse[] waiterResponses = webClient.get()
-                .uri("http://" + waiterServiceBaseUrl + "/api/waiter")  // Adjust the URI according to your API
-                .retrieve()
-                .bodyToMono(WaiterResponse[].class)
-                .block();
-
-        visit.getVisitorItemList().stream()
-                        .collect(Collectors.toList());
-        
+    public void createVisit(VisitRequest visitRequest){
+        Visit visit = Visit.builder()
+                .visitorItemList(visitRequest.getVisitorItemList())
+                .build();
 
         visitRepository.save(visit);
-        return true;
     }
 
     public List<VisitResponse> getAllVisits(){
@@ -98,7 +67,7 @@ public class VisitService {
                 .collect(Collectors.toList());
     }
 
-    public void updateVisit(VisitorItemDto visitRequest, String id) {
+    public void updateVisit(VisitorItem visitRequest, String id) {
         Visit visitToUpdate = visitRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Visit not found"));
 

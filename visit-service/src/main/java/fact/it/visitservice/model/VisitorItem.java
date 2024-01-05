@@ -34,4 +34,5 @@ public class VisitorItem {
         this.quantity = quantity;
         this.amount = amount;
     }
+
 }

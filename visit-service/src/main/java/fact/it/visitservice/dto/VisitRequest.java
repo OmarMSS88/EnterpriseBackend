@@ -12,5 +12,5 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class VisitRequest {
-    private List<VisitorItemDto> visitorItemDtoList;
+    private List<VisitorItem> visitorItemList;
 }
