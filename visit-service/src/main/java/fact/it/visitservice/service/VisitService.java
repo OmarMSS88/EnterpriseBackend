@@ -40,7 +40,11 @@ public class VisitService {
                 new VisitorItem(1, "2AS", LocalDate.now(), false, 5, 10)
         );
         VisitorItem visitorItem = new VisitorItem(1, "2AS", LocalDate.now(), false, 5, 10);
-        Visit visit = new Visit(2L, "SA10", Arrays.asList(visitorItem));
+        Visit visit = new Visit();
+        visit.setId(2L);  // Set a unique ID.
+        visit.setVisitNumber("SA10");  // Set other properties as needed.
+        visit.setVisitorItemList(visitorItems);
+        
         visitRepository.save(visit);
     }
     
