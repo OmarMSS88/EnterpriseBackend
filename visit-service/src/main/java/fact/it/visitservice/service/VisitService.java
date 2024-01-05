@@ -46,11 +46,13 @@ public class VisitService {
         
         visitRepository.save(visit);
 
-        VisitorItem visitorItem = new VisitorItem(2, "5AS", LocalDate.now(), false, 4, 5);
+        List<VisitorItem> visitorItems2 = Arrays.asList(
+                new VisitorItem(2, "4AS", LocalDate.now(), true, 5, 4)
+        );
         Visit visit2 = new Visit();
         visit2.setId(3L);
         visit2.setVisitNumber("BS50");
-        visit2.setVisitorItemList(Arrays.asList(visitorItem));
+        visit2.setVisitorItemList(visitorItems2);
 
         visitRepository.save(visit2);
     }
