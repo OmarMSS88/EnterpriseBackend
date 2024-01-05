@@ -47,15 +47,15 @@ public class VisitService {
         
         visitRepository.save(visit);
 
-        List<VisitorItem> visitorItems2 = Arrays.asList(
-                new VisitorItem(2, "4AS", LocalDate.now(), true, 5, 4)
-        );
-        Visit visit2 = new Visit();
-        visit2.setId(3L);
-        visit2.setVisitNumber("BS50");
-        visit2.setVisitorItemList(visitorItems2);
-
-        visitRepository.save(visit2);
+//        List<VisitorItem> visitorItems2 = Arrays.asList(
+//                new VisitorItem(2, "4AS", LocalDate.now(), true, 5, 4)
+//        );
+//        Visit visit2 = new Visit();
+//        visit2.setId(3L);
+//        visit2.setVisitNumber("BS50");
+//        visit2.setVisitorItemList(visitorItems2);
+//
+//        visitRepository.save(visit2);
     }
 
 
