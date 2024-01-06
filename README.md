@@ -51,3 +51,11 @@
 <p>
     Each service has a dockerfile that is used to create Docker images of said services within our Java application.
 </p>
+
+## Total services and databases
+<p>
+   In the following schema each service in detail along with its database can be found. The created endpoints within the gateway are also specified.
+</p>
+<p>
+   <img src=""/>
+</p>
