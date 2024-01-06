@@ -23,7 +23,7 @@ public class DishController {
     }
 
 
-    @CrossOrigin(origins = {"http://localhost:5173", "https://659977ef6dc360a81b8b2853--steady-belekoy-b94338.netlify.app/"})
+    @CrossOrigin(origins = {"http://localhost:5173", "https://65997af4a11f67e6752945ec--steady-belekoy-b94338.netlify.app/"})
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
