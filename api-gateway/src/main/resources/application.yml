@@ -28,7 +28,7 @@ spring:
         - id: table-service-all
           uri: http://${TABLE_SERVICE_BASEURL:localhost:8082}
           predicates:
-            - Path=/tables/all
+            - Path=/tables
             - Method=GET
           filters:
             - SetPath=/api/table/all
