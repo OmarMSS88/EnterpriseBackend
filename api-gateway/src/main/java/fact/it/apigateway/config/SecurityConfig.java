@@ -17,7 +17,6 @@ public class SecurityConfig {
                 .authorizeExchange(exchange ->
                         exchange
                                 .pathMatchers(HttpMethod.GET, "/tables").permitAll()
-                                .pathMatchers(HttpMethod.GET, "/visits").permitAll()
                                 .pathMatchers(HttpMethod.GET, "/waiters").permitAll()
                                 .pathMatchers(HttpMethod.GET, "/dishes").permitAll()
                                 .anyExchange().authenticated()
