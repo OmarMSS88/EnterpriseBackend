@@ -57,5 +57,5 @@
    In the following schema each service in detail along with its database can be found. The created endpoints within the gateway are also specified.
 </p>
 <p>
-   <img src=""/>
+   <img src="readmeassets/Schema.png"/>
 </p>
