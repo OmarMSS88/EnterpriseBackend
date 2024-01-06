@@ -34,8 +34,8 @@ spring:
             - SetPath=/api/table/all
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 3
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
         - id: table-service-post
           uri: http://${TABLE_SERVICE_BASEURL:localhost:8082}
           predicates:
