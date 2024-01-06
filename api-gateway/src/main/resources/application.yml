@@ -25,32 +25,50 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: visit-service
-          uri: http://${VISIT_SERVICE_BASEURL:localhost:8080}
+        - id: table-service-all
+          uri: http://${TABLE_SERVICE_BASEURL:localhost:8082}
           predicates:
-            - Path=/visits
+            - Path=/tables
             - Method=GET
           filters:
-            - SetPath=/api/visit/all
+            - SetPath=/api/table/all
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 3
-        - id: table-service
+        - id: table-service-post
           uri: http://${TABLE_SERVICE_BASEURL:localhost:8082}
           predicates:
             - Path=/tables
+            - Method=POST
           filters:
             - SetPath=/api/table
-        - id: dish-service
+        - id: table-service-put
+          uri: http://${TABLE_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/tables/{id}
+            - Method=PUT
+          filters:
+            - SetPath=/api/table/tables/{id}
+        - id: table-service-delete
+          uri: http://${TABLE_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/tables/{id}
+            - Method=DELETE
+          filters:
+            - SetPath=/api/table/tables/{id}
+        - id: dish-service-all
           uri: http://${DISH_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Path=/dishes
+            - Method=GET
           filters:
-            - SetPath=/api/dish
-        - id: waiter-service
+            - SetPath=/api/dish/all
+        - id: waiter-service-all
           uri: http://${WAITER_SERVICE_BASEURL:localhost:8083}
           predicates:
             - Path=/waiters
+            - Method=GET
           filters:
-            - SetPath=/api/waiter
+            - SetPath=/api/waiter/all
+
