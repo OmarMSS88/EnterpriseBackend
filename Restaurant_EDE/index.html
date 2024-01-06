@@ -10,10 +10,15 @@
 <body>
   <div id="app">
     <h1>Available Dishes</h1>
+    <ul>
+      <li v-for="dish in info" :key="dish.id">
+        {{ dish.dishName }} - ${{ dish.price }}
+        <button class="update" @click="updateDish(dish)">Update</button>
+        <button class="delete" @click="deleteDish(dish.id)">Delete</button>
+      </li>
+    </ul>
     
-    {{ info }}
   </div>
-  
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   <script src="src/restaurant.js" type="module"></script>
 </body>
