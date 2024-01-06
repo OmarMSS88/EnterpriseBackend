@@ -23,7 +23,7 @@ public class DishController {
     }
 
 
-
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<DishResponse> getAllDishes(){

@@ -1,30 +1,16 @@
+import { axios } from '@/plugins/axios'
+
 new Vue({
     el: '#app',
-    data: {
-      dishes: [
-        { id: 1, name: 'Pizza Margherita', price: 10.99 },
-      { id: 2, name: 'Spaghetti Carbonara', price: 12.99 },
-      { id: 3, name: 'Tiramisu', price: 6.99 },
-      ],
-      newDish: { name: '', price: 0 },
-      visitors: [],
-      tables: [],
-      waiters: []
+    data () {
+      return {
+        info: null
+      }
     },
-    methods: {
-        addDish(newDish) {
-          this.dishes.push(newDish);
-        },
-        updateDish(updatedDish) {
-          // Implement update logic
-        },
-        deleteDish(dishId) {
-          this.dishes = this.dishes.filter(dish => dish.id !== dishId);
-        },
-        // Similar methods for visitors, tables, and waiters
-      },
     mounted() {
-        this.fetchData();
+        axios
+          .get('https://dish-service-jetzeluyten.cloud.okteto.net/api/dish/all')
+          .then(response => (this.info = response.data))
     }
       
   });
