@@ -59,3 +59,27 @@
 <p>
    <img src="readmeassets/Schema.png"/>
 </p>
+<p>
+   Services:
+</p>
+<ul>
+   <li>api-gateway</li>
+   <li>visit-service</li>
+   <li>dish-service</li>
+   <li>waiter-service</li>
+   <li>table-service</li>
+</ul>
+<p>
+   Volumes and databases:
+</p>
+<ul>
+   <li>mongo-table</li>
+   <li>mongo-waiter</li>
+   <li>mongo-dish</li>
+   <li>mysql-visit</li>
+   <li>mongodb_table_data</li>
+   <li>mongodb_waiter_data</li>
+   <li>mongodb_dish_data</li>
+   <li>mysql_visit_data</li>
+</ul>
+
