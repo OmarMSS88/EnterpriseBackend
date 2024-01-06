@@ -88,7 +88,7 @@ services:
     ports:
       - 8084:8084
     environment:
-      TABLE_SERVICE_BASEURL: table-service:8082
+      TABLE_SERVICE_BASEURL: mongo-table
       DISH_SERVICE_BASEURL: dish-service:8081
       WAITER_SERVICE_BASEURL: waiter-service:8083
       VISIT_SERVICE_BASEURL: visit-service:8080
