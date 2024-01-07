@@ -7,6 +7,7 @@
 * [CI/CD & Deployment](#deployment)
 	* [Dockerfile](#dockerfile)
 * [Services and Databases](#services)
+* [Screenshot Postman](#postman)
 * [Extras](#extras)
 	* [Frontend](#frontend)
 	* [Manifest files](#kubernetes)
@@ -89,6 +90,29 @@
    <li>mongodb_dish_data</li>
    <li>mysql_visit_data</li>
 </ul>
+
+## Screenshots postman <a class="anchor" id="postman"></a>
+<p>
+	<img src="readmeassets/tableGetAll.png"/>
+</p>
+<p>
+    <img src="readmeassets/tablePost.png">
+    <img src="readmeassets/tablePostResult.png">
+</p>
+<p>
+    <img src="readmeassets/tablePutSeatAmount.png">
+    <img src="readmeassets/tablePutSeatAmountResult.png">
+</p>
+<p>
+    <img src="readmeassets/tableDelete.png">
+    <img src="readmeassets/tableDeleteResult.png">
+</p>
+<p>
+    <img src="readmeassets/dishGetAll.png">
+</p>
+<p>
+    <img src="readmeassets/waiterGetAll.png">
+</p>
 
 ## Extras <a class="anchor" id="extras"></a>
 <p>
