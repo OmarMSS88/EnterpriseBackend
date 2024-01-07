@@ -6,7 +6,9 @@ import fact.it.waiterservice.model.Waiter;
 import fact.it.waiterservice.repository.WaiterRepository;
 import fact.it.waiterservice.service.WaiterService;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class WaiterserviceApplicationTests {
 
     @Test
