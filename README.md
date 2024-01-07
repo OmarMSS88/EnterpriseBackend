@@ -10,7 +10,7 @@
 * [Extras](#extras)
 	* [Frontend](#frontend)
 	* [Manifest files](#kubernetes)
-	* [Rate limiting](#rateLimiting)
+	* [Rate limiting](#rate-limiting)
 ## Introduction <a class="anchor" id="introduction"></a>
 <p>
     For this project, we've crafted a sophisticated microservices backend. Our backend comprises four distinct microservices that collectively shape the fundamental structure of a restaurant: visits, waiters, tables, and dishes. Each of these services has its own dedicated database. All conceivable requests are seamlessly handled by a custom-built gateway.
@@ -107,7 +107,7 @@
 	<img src="readmeassets/kubernetesManifest2.png"/>
 </p>
 
-### Rate limiting <a class="anchor" id="rateLimiting"></a>
+### Rate limiting <a class="anchor" id="rate-limiting"></a>
 <p>
 	We added rate limiting to our project
 	<img src="readmeassets/rateLimiting.png"/>
