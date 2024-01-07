@@ -110,5 +110,8 @@
 ### Rate limiting <a class="anchor" id="rate-limiting"></a>
 <p>
 	We added rate limiting to our project.
+	
+</p>
+<p>
 	<img src="readmeassets/rateLimiting.png"/>
 </p>
