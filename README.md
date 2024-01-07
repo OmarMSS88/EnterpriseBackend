@@ -4,13 +4,13 @@
 * [Java Structure](#java-structure)
     * [UML](#UML)
     * [Folder Structures](#folder-structures)
-* [CI/CD & Deployment] (#deployment)
-	* [Dockerfile] (#dockerfile)
-* [Services and Databases] (#services)
-* [Extras] (#extras)
-	* [Frontend] (#frontend)
-	* [Manifest files] (#kubernetes)
-	* [Rate limiting] (#rateLimiting
+* [CI/CD & Deployment](#deployment)
+	* [Dockerfile](#dockerfile)
+* [Services and Databases](#services)
+* [Extras](#extras)
+	* [Frontend](#frontend)
+	* [Manifest files](#kubernetes)
+	* [Rate limiting](#rateLimiting)
 ## Introduction <a class="anchor" id="introduction"></a>
 <p>
     For this project, we've crafted a sophisticated microservices backend. Our backend comprises four distinct microservices that collectively shape the fundamental structure of a restaurant: visits, waiters, tables, and dishes. Each of these services has its own dedicated database. All conceivable requests are seamlessly handled by a custom-built gateway.
