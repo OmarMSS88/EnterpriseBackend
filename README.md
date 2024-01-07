@@ -4,6 +4,13 @@
 * [Java Structure](#java-structure)
     * [UML](#UML)
     * [Folder Structures](#folder-structures)
+* [CI/CD & Deployment] (#CI/CD)
+	* [Dockerfile] (#Dockerfile)
+* [Services and databases] (#services)
+* [Extras] (#Extras)
+	* [Frontend] (#Frontend)
+	* [Manifest files] (#Kubernetes)
+	* [Rate limiting] (#RateLimiting
 ## Introduction <a class="anchor" id="introduction"></a>
 <p>
     For this project, we've crafted a sophisticated microservices backend. Our backend comprises four distinct microservices that collectively shape the fundamental structure of a restaurant: visits, waiters, tables, and dishes. Each of these services has its own dedicated database. All conceivable requests are seamlessly handled by a custom-built gateway.
@@ -42,17 +49,17 @@
     <li><strong>service:</strong> Implements the business logic of the service. It contains the application's main functionality, handling tasks such as data validation, processing, and interaction with the repository to perform CRUD (Create, Read, Update, Delete) operations.</li>
 </ul>
 
-## CI/CD & Depolyment
+## CI/CD & Deployment <a class="anchor" id="CI/CD"></a>
 <p>
     The next step is to create automation using docker and docker-compose files.
 </p>
 
-### Dockerfile
+### Dockerfile <a class="anchor" id="Dockerfile"></a>
 <p>
     Each service has a dockerfile that is used to create Docker images of said services within our Java application.
 </p>
 
-## Total services and databases
+## Total services and databases <a class="anchor" id="services"></a>
 <p>
    In the following schema each service in detail along with its database can be found. The created endpoints within the gateway are also specified.
 </p>
@@ -83,3 +90,25 @@
    <li>mysql_visit_data</li>
 </ul>
 
+## Extras <a class="anchor" id="Extras"></a>
+<p>
+	We have a couple of additions in our project.
+</p>
+
+### Frontend <a class="anchor" id="Frontend"></a>
+<p>
+	We have a frontend which uses data from dish-service: https://6599be996270e612a52753e5--steady-belekoy-b94338.netlify.app/.
+</p>
+
+### Kubernetes manifest files <a class="anchor" id="Kubernetes"></a>
+<p>
+	We converted our docker-compose file to multiple manifest files, as you can see below.
+	<img src="readmeassets/kubernetesManifest1.png"/>
+	<img src="readmeassets/kubernetesManifest2.png"/>
+</p>
+
+### Rate limiting <a class="anchor" id="RateLimiting"></a>
+<p>
+	We added rate limiting to our project
+	<img src="readmeassets/rateLimiting.png"/>
+</p>
